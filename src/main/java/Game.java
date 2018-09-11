@@ -1,7 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import ControllerUndKI.ParsecKI;
 import Enums.SpaceInvaderType;
+import Events.GUIListener;
+import Events.GameOverEvent;
 
 public class Game {
 
@@ -12,6 +16,7 @@ public class Game {
 	private ArrayList<SpaceInvader> enemys;
 	private ArrayList<Projectile> projectiles;
 	private long startTime;
+	private Set<GUIListener> listeners;
 	
 	public Game(Map map, Starship star) {
 		this.map = map;
@@ -20,6 +25,7 @@ public class Game {
 		this.projectiles = new ArrayList<Projectile>();
 		this.points = 0;
 		this.levelCounter = 1;
+		this.listeners = new HashSet<GUIListener>();
 	}
 	
 	public void start() {
@@ -29,6 +35,10 @@ public class Game {
 		prepareLevel(this.levelCounter);
 		while(!star.getGameOver()) {
 		moveGame();
+		}
+		GameOverEvent e = new GameOverEvent();
+		for (GUIListener listener : listeners ) {
+			listener.gameOver(e);
 		}
 	}
 	
@@ -78,5 +88,12 @@ public class Game {
 		}
 	}
 	
+	public synchronized void addGUIListener(GUIListener listener) {
+		listeners.add(listener);
+	}
+	
+	public synchronized void removeGUIListener(GUIListener listener) {
+		listeners.remove(listener);
+	}
 	
 }
