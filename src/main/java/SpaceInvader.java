@@ -1,6 +1,7 @@
 import ControllerUndKI.KI;
 import Enums.ActorType;
 import Enums.Direction;
+import Enums.ShotType;
 import Enums.SpaceInvaderType;
 
 public class SpaceInvader extends Actor {
@@ -91,6 +92,22 @@ public class SpaceInvader extends Actor {
 			act.GameOver();
 		}
 		if (act.getActorType() == ActorType.SPACE_INVADER) {}
+		if (act.getActorType() == ActorType.PROJECTILE) {
+			hit(act.getShotType());
+			this.map.setActor(act.getField().getX(), act.getField().getY(), null);
+		}
+	}
+	
+	@Override
+	public void hit(ShotType s) {
+		switch (s) {
+		case SINGLESHOT: this.health -= 25;
+						 break;
+		case BIGSHOT:	 this.health -= 50;
+		}
+		if (this.health <= 0) {
+			this.dead = true;
+		}
 	}
 		
 	public boolean isDead() {

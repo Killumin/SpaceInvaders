@@ -94,6 +94,17 @@ public class Projectile extends Actor {
 			this.map.setActor(myField.getX(), myField.getY(), null);
 			this.setDone();
 		}
+		if (act.getActorType() == ActorType.PROJECTILE) {
+			this.map.setActor(act.getField().getX(), act.getField().getY(), null);
+			act.setDone();
+			this.map.setActor(myField.getX(), myField.getY(), null);
+			this.setDone();
+		}
+		if (act.getActorType() == ActorType.SPACE_INVADER) {
+			act.hit(this.s);
+			this.map.setActor(myField.getX(), myField.getY(), null);
+			this.setDone();
+		}
 	}
 	
 	public Field getField() {

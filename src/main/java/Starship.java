@@ -102,6 +102,7 @@ public class Starship extends Actor {
 			this.map.setActor(act.getField().getX(), act.getField().getY(), null);
 		}
 		if (act.getActorType() == ActorType.SPACE_INVADER) {
+			this.map.setActor(act.getField().getX(), act.getField().getY(), null);
 			GameOver();
 		}
 	}
