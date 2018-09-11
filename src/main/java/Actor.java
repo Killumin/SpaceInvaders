@@ -19,4 +19,7 @@ public abstract class Actor {
 	
 	public void hit(ShotType s) {
 	}
+	
+	public void GameOver() {
+	}
 }

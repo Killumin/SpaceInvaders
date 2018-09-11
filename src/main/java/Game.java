@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
-import Enums.Direction;
-import Enums.ShotType;
+import ControllerUndKI.ParsecKI;
+import Enums.SpaceInvaderType;
 
 public class Game {
 
@@ -9,15 +9,14 @@ public class Game {
 	private Map map;
 	private int points;
 	private Starship star;
-	private ArrayList<Actor> enemys;
+	private ArrayList<SpaceInvader> enemys;
 	private ArrayList<Projectile> projectiles;
 	private long startTime;
-	private int x;
 	
 	public Game(Map map, Starship star) {
 		this.map = map;
 		this.star = star;
-		this.enemys = new ArrayList<Actor>();
+		this.enemys = new ArrayList<SpaceInvader>();
 		this.projectiles = new ArrayList<Projectile>();
 		this.points = 0;
 		this.levelCounter = 1;
@@ -27,15 +26,16 @@ public class Game {
 		this.startTime = System.currentTimeMillis();
 		this.star.setTimeStampBack();
 		this.map.setActor(star.getField().getX(), star.getField().getY(), star);
-		this.projectiles.add(new Projectile(map.getField(4, 0), Direction.UP, ShotType.SINGLESHOT, map));
+		//this.projectiles.add(new Projectile(map.getField(4, 0), Direction.UP, ShotType.SINGLESHOT, map));
+		this.enemys.add(new SpaceInvader(SpaceInvaderType.PARSEC, map, new ParsecKI(), map.getField(4, 15)));
 		while(!star.getGameOver()) {
 		moveGame();
 		}
 	}
 	
 	public void moveGame() {
-		
 		clearProjectileListFromUnused();
+		clearEnemyListFromUnused();
 		// Starship moving
 		if (System.currentTimeMillis() - startTime > star.getTimeStamp()) {
 			//star.move(Direction.LEFT);
@@ -50,6 +50,12 @@ public class Game {
 		}
 		}
 		// Space Invaders moving
+		for (int i = 0; i < enemys.size(); i++) {
+			if (System.currentTimeMillis() - startTime > enemys.get(i).getTimeStamp()) {
+				enemys.get(i).move();
+				enemys.get(i).increaseTimeStamp();
+		}
+		}
 	}
 	
 	public void insertProjectiles() {
@@ -59,6 +65,12 @@ public class Game {
 	public void clearProjectileListFromUnused() {
 		for (int i = 0; i<this.projectiles.size(); i++) {
 			if (projectiles.get(i).isDone()) { projectiles.remove(i); }
+		}
+	}
+	
+	public void clearEnemyListFromUnused() {
+		for (int i = 0; i<this.enemys.size(); i++) {
+			if (enemys.get(i).isDead()) { enemys.remove(i); }
 		}
 	}
 	

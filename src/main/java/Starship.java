@@ -34,7 +34,8 @@ public class Starship extends Actor {
 		case UP:	if(this.map.getField(myField.getX(),myField.getY()+1).getType() != FieldType.WALL) {
 					Field temp = this.map.getField(myField.getX(),myField.getY()+1);
 					if (temp.getActor() != null) { collision(temp.getActor()); }
-					else 	{ this.myField = temp;
+					else 	{ this.map.setActor(this.myField.getX(), this.myField.getY(), null);
+							  this.myField = temp;
 							  this.map.setActor(temp.getX(), temp.getY(), this);
 							}
 					}
@@ -42,7 +43,8 @@ public class Starship extends Actor {
 		case DOWN: 	if(this.map.getField(myField.getX(),myField.getY()-1).getType() != FieldType.WALL) {
 					Field temp = this.map.getField(myField.getX(),myField.getY()-1);
 					if (temp.getActor() != null) { collision(temp.getActor()); }
-					else 	{ this.myField = temp;
+					else 	{ this.map.setActor(this.myField.getX(), this.myField.getY(), null);
+							  this.myField = temp;
 							  this.map.setActor(temp.getX(), temp.getY(), this);
 							}
 					}
@@ -50,7 +52,8 @@ public class Starship extends Actor {
 		case RIGHT: if(this.map.getField(myField.getX()+1,myField.getY()).getType() != FieldType.WALL) {
 					Field temp = this.map.getField(myField.getX()+1,myField.getY());
 					if (temp.getActor() != null) { collision(temp.getActor()); }
-					else 	{ this.myField = temp;
+					else 	{ this.map.setActor(this.myField.getX(), this.myField.getY(), null);
+							  this.myField = temp;
 							  this.map.setActor(temp.getX(), temp.getY(), this);
 							}
 					}
@@ -58,7 +61,8 @@ public class Starship extends Actor {
 		case LEFT: 	if(this.map.getField(myField.getX()-1,myField.getY()).getType() != FieldType.WALL) {
 					Field temp = this.map.getField(myField.getX()-1,myField.getY());
 					if (temp.getActor() != null) { collision(temp.getActor()); }
-					else 	{ this.myField = temp;
+					else 	{ this.map.setActor(this.myField.getX(), this.myField.getY(), null);
+							  this.myField = temp;
 							  this.map.setActor(temp.getX(), temp.getY(), this);
 							}
 					}
@@ -102,6 +106,7 @@ public class Starship extends Actor {
 		}
 	}
 	
+	@Override
 	public void GameOver() {
 		this.gameOver = true;
 		this.map.setActor(myField.getX(), myField.getY(), null);

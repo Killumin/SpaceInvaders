@@ -36,7 +36,10 @@ public class Projectile extends Actor {
 										{
 											Field temp = map.getField(this.myField.getX(), this.myField.getY()+1);
 											if (temp.getActor() != null) { collision(temp.getActor()); }
-											else 	{ this.myField = temp;
+											else 	
+											{
+											this.map.setActor(this.myField.getX(), this.myField.getY(), null);
+											this.myField = temp;
 											this.map.setActor(temp.getX(), temp.getY(), this);
 											}
 										}
@@ -49,7 +52,10 @@ public class Projectile extends Actor {
 										{
 											Field temp = map.getField(this.myField.getX(), this.myField.getY()-1);
 											if (temp.getActor() != null) { collision(temp.getActor()); }
-											else 	{ this.myField = temp;
+											else 	
+											{
+											this.map.setActor(this.myField.getX(), this.myField.getY(), null);
+											this.myField = temp;
 											this.map.setActor(temp.getX(), temp.getY(), this);
 											}
 										}
