@@ -29,7 +29,7 @@ public class GameOver {
         layout.setAlignment(Pos.BASELINE_CENTER);
 
         // Scene 
-        Scene scene = new Scene(layout);
+        Scene scene = new Scene(layout,200,200);
         window.setScene(scene);
         window.showAndWait();
     }

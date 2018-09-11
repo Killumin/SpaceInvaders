@@ -35,7 +35,6 @@ public class GUI extends Application{
         startGameGui = new Button("Start Game");
         startGameGui.setOnAction(e -> {
             window.setScene(gameScene());
-            GameOver.endScreen();
         });
              
         //Menu Labels
@@ -58,13 +57,13 @@ public class GUI extends Application{
     
     private Scene gameScene(){
         //Game Button 
-        //returnMenu = new Button("Return to Menu!");
-        //returnMenu.setOnAction(e -> window.setScene(menuScene));
+        returnMenu = new Button("Return to Menu!");
+        returnMenu.setOnAction(e -> window.setScene(menuScene));
 
         //Game Layout
         gameLayout = new StackPane();
-        //gameLayout.getChildren().add(returnMenu);
-        //gameLayout.setAlignment(Pos.BOTTOM_CENTER);
+        gameLayout.getChildren().add(returnMenu);
+        gameLayout.setAlignment(Pos.CENTER);
 
         // Game Scene 
         gameScene = new Scene(gameLayout);
