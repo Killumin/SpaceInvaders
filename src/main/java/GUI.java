@@ -7,14 +7,18 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 public class GUI extends Application{
 
-    Stage window;
-    Scene menuScene;
-    Scene gameScene;
-    Button startGameGui;
-    Button returnMenu;
-    StackPane menuLayout;
-    StackPane gameLayout;
-    Label ueberschrift;
+    private Stage window;
+    private Scene menuScene;
+    private Scene gameScene;
+    private Button startGameGui;
+    private Button returnMenu;
+    private StackPane menuLayout;
+    private StackPane gameLayout;
+    private Label ueberschrift;
+    
+    public static void main(String[] args) {
+		launch(args);
+	}
 
     @Override
     public void start(Stage primaryStage) throws Exception {
