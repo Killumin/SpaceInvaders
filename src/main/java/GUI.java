@@ -1,5 +1,6 @@
 import Events.GUIListener;
 import Events.GameOverEvent;
+import Events.StarshipMovedEvent;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import ControllerUndKI.StarshipController;
+
 public class GUI extends Application implements GUIListener{
 
     private Stage window;
@@ -41,6 +43,7 @@ public class GUI extends Application implements GUIListener{
 		map.generate(0);
 		Starship s = new Starship(map, map.getField(4, 10), null);
 		Game g = new Game(map, s);
+		g.addGUIListener(this);
     	// end shit
         //Menu  Buttons
         startGameGui = new Button("Start Game");
@@ -90,5 +93,10 @@ public class GUI extends Application implements GUIListener{
 	public void gameOver(GameOverEvent event) {
 		System.out.println("Hello im a event!");
 		GameOver.endScreen();
+	}
+
+	@Override
+	public void starshipMoved(StarshipMovedEvent event) {
+		System.out.println("GUI Notified");
 	}
 }
