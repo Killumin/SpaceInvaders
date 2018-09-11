@@ -41,7 +41,7 @@ public class GUI extends Application implements GUIListener{
     	// Shit 
 		Map map = new Map();
 		map.generate(0);
-		Starship s = new Starship(map, map.getField(4, 10), null);
+		Starship s = new Starship(map, map.getField(4, 15), null);
 		Game g = new Game(map, s);
 		g.addGUIListener(this);
     	// end shit
@@ -84,7 +84,7 @@ public class GUI extends Application implements GUIListener{
         gameScene = new Scene(gameLayout);
         window.setFullScreenExitHint("");
         window.setScene(gameScene);
-        window.setFullScreen(true);
+        //window.setFullScreen(true);
 
         return gameScene;
     }

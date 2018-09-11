@@ -14,7 +14,7 @@ public class Starship extends Actor {
 	private ArrayList<Projectile> projectiles;
 	private int timeStamp;
 	private boolean gameOver;
-	private static final int SHIP_SPEED = 5000;
+	private static final int SHIP_SPEED = 1000;
 	private StarshipController controls;
 	private ActorType actType;
 

@@ -130,4 +130,9 @@ public class SpaceInvader extends Actor {
 	public ActorType getActorType() {
 		return this.actType;
 	}
+	
+	@Override
+	public Field getField() {
+		return this.myField;
+	}
 }

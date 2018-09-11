@@ -3,9 +3,11 @@ import java.util.ArrayList;
 //import java.util.Set;
 
 import ControllerUndKI.ParsecKI;
+import Enums.Direction;
 import Enums.SpaceInvaderType;
 import Events.GUIListener;
 import Events.GameOverEvent;
+import Events.StarshipMovedEvent;
 
 public class Game {
 
@@ -44,7 +46,9 @@ public class Game {
 		clearEnemyListFromUnused();
 		// Starship moving
 		if (System.currentTimeMillis() - startTime > star.getTimeStamp()) {
-			//star.move(Direction.LEFT);
+			star.move(Direction.DOWN);
+			StarshipMovedEvent e = new StarshipMovedEvent();
+			listener.starshipMoved(e);
 			star.increaseTimeStamp();
 			insertProjectiles();
 		}
@@ -58,7 +62,7 @@ public class Game {
 		// Space Invaders moving
 		for (int i = 0; i < enemys.size(); i++) {
 			if (System.currentTimeMillis() - startTime > enemys.get(i).getTimeStamp()) {
-				enemys.get(i).move();
+				//enemys.get(i).move();
 				enemys.get(i).increaseTimeStamp();
 		}
 		}
@@ -66,7 +70,8 @@ public class Game {
 	
 	public void prepareLevel(int i) {
 		//this.projectiles.add(new Projectile(map.getField(4, 0), Direction.UP, ShotType.SINGLESHOT, map));
-		this.enemys.add(new SpaceInvader(SpaceInvaderType.PARSEC, map, new ParsecKI(), map.getField(4, 15)));
+		this.enemys.add(new SpaceInvader(SpaceInvaderType.PARSEC, map, new ParsecKI(), map.getField(4, 10)));
+		this.map.setActor(4, 10, enemys.get(0));
 	}
 	
 	public void insertProjectiles() {
