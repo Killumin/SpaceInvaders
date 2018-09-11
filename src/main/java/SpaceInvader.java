@@ -82,7 +82,6 @@ public class SpaceInvader extends Actor {
 			break;
 		}
 		} catch (ArrayIndexOutOfBoundsException e) { }
-		System.out.println("Starship" + myField.makeString());
 	}
 	
 	public void collision(Actor act) {

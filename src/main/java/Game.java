@@ -26,8 +26,7 @@ public class Game {
 		this.startTime = System.currentTimeMillis();
 		this.star.setTimeStampBack();
 		this.map.setActor(star.getField().getX(), star.getField().getY(), star);
-		//this.projectiles.add(new Projectile(map.getField(4, 0), Direction.UP, ShotType.SINGLESHOT, map));
-		this.enemys.add(new SpaceInvader(SpaceInvaderType.PARSEC, map, new ParsecKI(), map.getField(4, 15)));
+		prepareLevel(this.levelCounter);
 		while(!star.getGameOver()) {
 		moveGame();
 		}
@@ -56,6 +55,11 @@ public class Game {
 				enemys.get(i).increaseTimeStamp();
 		}
 		}
+	}
+	
+	public void prepareLevel(int i) {
+		//this.projectiles.add(new Projectile(map.getField(4, 0), Direction.UP, ShotType.SINGLESHOT, map));
+		this.enemys.add(new SpaceInvader(SpaceInvaderType.PARSEC, map, new ParsecKI(), map.getField(4, 15)));
 	}
 	
 	public void insertProjectiles() {
