@@ -1,4 +1,8 @@
 package JFXAnsatz;
+
+
+import java.io.FileNotFoundException;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,6 +15,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 public class Main extends Application{
 	
 		private Stage window;
@@ -29,22 +35,6 @@ public class Main extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-//		scene.setOnKeyPressed(e -> {
-//            switch (e.getCode()) {
-//                case A:
-//                    player.moveLeft();
-//                    break;
-//                case D:
-//                    player.moveRight();
-//                    break;
-//                case W:
-//                	player.moveUp();
-//                	break;
-//                case S:
-//                	player.moveDown();
-//                	break;
-//            }
-		
 		window = stage;
 		window.setScene(menuScene());
         window.setTitle("SpaceInvader");
@@ -57,7 +47,12 @@ public class Main extends Application{
 	        //Menu  Buttons
 	        startGameGui = new Button("Start Game");
 	        startGameGui.setOnAction(e -> {
-	        window.setScene(gameScene());
+	        try {
+				window.setScene(gameScene());
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	        });
 	             
 	        //Menu Labels
@@ -76,14 +71,14 @@ public class Main extends Application{
 	        return menuScene;
 	    }
 	 
-	 private Scene gameScene(){
+	 private Scene gameScene() throws FileNotFoundException{
 		 	// Starship
-		 	Starship player = new Starship(0, 0, 20, 20, "Guardiens of the Galaxy", Color.ORANGE);
+		 	Starship player = new Starship(null,16,16,true,true);
+		 	ImageView starship = player.init();
 	        //Game Layout
 	        gameLayout = new StackPane();
-	        gameLayout.getChildren().addAll(player);
+	        gameLayout.getChildren().add(starship);
 	        gameLayout.setBackground(null);
-	        //gameLayout.setStyle("-fx-backround-color: #A9A9A9;");
 	        gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
 	        
 	        // Game Scene 
@@ -92,18 +87,18 @@ public class Main extends Application{
 			gameScene.setOnKeyPressed(e -> {
 				switch (e.getCode()) {
               case A:
-                  player.moveLeft();
+                  player.moveLeft(starship);
                   break;
               case D:
-                  player.moveRight();
+                  player.moveRight(starship);
                   break;
               case W:
-              	  player.moveUp();
+              	  player.moveUp(starship);
               	  break;
               case S:
-             	  player.moveDown();
+             	  player.moveDown(starship);
               	  break;
-          }});
+				}});
 	        window.setScene(gameScene);
 	        window.setFullScreenExitHint("");
 	        window.setFullScreen(true);
