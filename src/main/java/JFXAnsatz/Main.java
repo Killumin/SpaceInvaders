@@ -28,6 +28,23 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		
+//		scene.setOnKeyPressed(e -> {
+//            switch (e.getCode()) {
+//                case A:
+//                    player.moveLeft();
+//                    break;
+//                case D:
+//                    player.moveRight();
+//                    break;
+//                case W:
+//                	player.moveUp();
+//                	break;
+//                case S:
+//                	player.moveDown();
+//                	break;
+//            }
+		
 		window = stage;
 		window.setScene(menuScene());
         window.setTitle("SpaceInvader");
