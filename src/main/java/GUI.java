@@ -25,8 +25,6 @@ public class GUI extends Application implements GUIListener{
 		launch(args);
 	}
     
-    
-    
     @Override
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
@@ -72,19 +70,19 @@ public class GUI extends Application implements GUIListener{
     
     private Scene gameScene(){
         //Game Button 
-        returnMenu = new Button("Return to Menu!");
-        returnMenu.setOnAction(e -> window.setScene(menuScene));
+        //returnMenu = new Button("Return to Menu!");
+        //returnMenu.setOnAction(e -> window.setScene(menuScene));
 
         //Game Layout
         gameLayout = new StackPane();
-        gameLayout.getChildren().add(returnMenu);
+        gameLayout.getChildren();
         gameLayout.setAlignment(Pos.CENTER);
 
         // Game Scene 
         gameScene = new Scene(gameLayout);
         window.setFullScreenExitHint("");
         window.setScene(gameScene);
-        //window.setFullScreen(true);
+        window.setFullScreen(true);
 
         return gameScene;
     }
