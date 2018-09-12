@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 public class Starship extends Image {
 
 	public Starship(InputStream arg0, double arg1, double arg2, boolean arg3, boolean arg4) throws FileNotFoundException {
-		super(new FileInputStream("C:\\Users\\Killumi\\Pictures\\Starship.png"), arg1, arg2, arg3, arg4);
+		super(new FileInputStream("./Starship.png"), arg1, arg2, arg3, arg4);
 	}
 
 //	public Starship(int x, int y, int w, int h, String type, Color color) {
