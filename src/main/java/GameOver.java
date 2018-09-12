@@ -8,6 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class GameOver {
+	
 
     public static void endScreen() {
         // Window
@@ -18,18 +19,22 @@ public class GameOver {
         // Labels
 
         // Buttons
+        GUI test;
+        test = new GUI();
         Button retry = new Button("Retry!");
         Button menu = new Button("Back to Menu!");
         Button close = new Button("Close (for now !!)");
+        retry.setOnAction(e -> test.setScene(test.getGameScene()));
+        menu.setOnAction(e-> test.setScene(test.getMenuScene()));
         close.setOnAction(e -> window.close());
 
         // Layout
         VBox layout = new VBox(20);
-        layout.getChildren().addAll(retry,menu);
+        layout.getChildren().addAll(retry,menu,close);
         layout.setAlignment(Pos.BASELINE_CENTER);
 
         // Scene 
-        Scene scene = new Scene(layout,200,200);
+        Scene scene = new Scene(layout,600,600);
         window.setScene(scene);
         window.showAndWait();
     }

@@ -30,12 +30,12 @@ public class GUI extends Application implements GUIListener{
         window = primaryStage;
         
         // Window 
-        window.setScene(menueScene());
+        window.setScene(menuScene());
         window.setTitle("SpaceInvader");
         window.show();
     }
 
-    private Scene menueScene(){
+    private Scene menuScene(){
     	// Shit 
 		Map map = new Map();
 		map.generate(0);
@@ -77,7 +77,6 @@ public class GUI extends Application implements GUIListener{
         gameLayout = new StackPane();
         gameLayout.getChildren();
         gameLayout.setAlignment(Pos.CENTER);
-
         // Game Scene 
         gameScene = new Scene(gameLayout);
         window.setFullScreenExitHint("");
@@ -86,11 +85,25 @@ public class GUI extends Application implements GUIListener{
 
         return gameScene;
     }
+    
+    
+    public Scene getMenuScene() {
+    	return menuScene;
+    }
+    
+    public Scene getGameScene() {
+    	return gameScene;
+    }
+    
+    public void setScene(Scene scene) {
+    	window.setScene(scene);
+    }
 
 	@Override
 	public void gameOver(GameOverEvent event) {
 		System.out.println("Hello im a event!");
 		GameOver.endScreen();
+		window.close();
 	}
 
 	@Override
