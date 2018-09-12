@@ -29,19 +29,19 @@ public class Starship extends Image {
     }
     
     void moveLeft(ImageView iv) {
-        iv.setTranslateX(iv.getTranslateX() - 5);
+        iv.setTranslateX(iv.getTranslateX() - 15);
     }
 
     void moveRight(ImageView iv) {
-    	iv.setTranslateX(iv.getTranslateX() + 5);
+    	iv.setTranslateX(iv.getTranslateX() + 15);
     }
 
     void moveUp(ImageView iv) {
-    	iv.setTranslateY(iv.getTranslateY() - 5);
+    	iv.setTranslateY(iv.getTranslateY() - 15);
     }
 
     void moveDown(ImageView iv) {
-    	iv.setTranslateY(iv.getTranslateY() + 5);
+    	iv.setTranslateY(iv.getTranslateY() + 15);
     }
 	
 
