@@ -77,17 +77,35 @@ public class Main extends Application{
 	    }
 	 
 	 private Scene gameScene(){
+		 	// Starship
+		 	Starship player = new Starship(0, 0, 20, 20, "Guardiens of the Galaxy", Color.ORANGE);
 	        //Game Layout
 	        gameLayout = new StackPane();
-	        gameLayout.getChildren().addAll();
+	        gameLayout.getChildren().addAll(player);
 	        gameLayout.setBackground(null);
 	        //gameLayout.setStyle("-fx-backround-color: #A9A9A9;");
 	        gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
 	        
 	        // Game Scene 
 	        gameScene = new Scene(gameLayout);
-	        window.setFullScreenExitHint("");
+	        //
+			gameScene.setOnKeyPressed(e -> {
+				switch (e.getCode()) {
+              case A:
+                  player.moveLeft();
+                  break;
+              case D:
+                  player.moveRight();
+                  break;
+              case W:
+              	  player.moveUp();
+              	  break;
+              case S:
+             	  player.moveDown();
+              	  break;
+          }});
 	        window.setScene(gameScene);
+	        window.setFullScreenExitHint("");
 	        window.setFullScreen(true);
 
 	        return gameScene;
