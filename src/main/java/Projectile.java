@@ -14,7 +14,8 @@ public class Projectile extends Actor {
 	private boolean done;
 	private ActorType actType;
 
-	public Projectile(Field f, Direction dir, ShotType s, Map map) {
+	public Projectile(Field f, Direction dir, ShotType s, Map map,int w, int h) {
+		super(w,h);
 		this.map = map;
 		this.myField = f;
 		this.dir = dir;

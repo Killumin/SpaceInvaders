@@ -16,7 +16,8 @@ public class SpaceInvader extends Actor {
 	private int SPACE_INVADER_SPEED;
 	private ActorType actType;
 	
-	public SpaceInvader(SpaceInvaderType type, Map map, KI controls, Field f) {
+	public SpaceInvader(SpaceInvaderType type, Map map, KI controls, Field f, int w, int h) {
+		super(w,h);
 		SPACE_INVADER_SPEED = 1000;
 		if (type == SpaceInvaderType.PARSEC) {
 		this.type = type;

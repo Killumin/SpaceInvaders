@@ -1,7 +1,12 @@
+import com.sun.javafx.geom.Rectangle;
 import Enums.ActorType;
 import Enums.ShotType;
 
-public abstract class Actor {
+public abstract class Actor extends Rectangle {
+	
+	public Actor(int w, int h) {
+		super(w,h);
+	}
 
 	public ActorType getActorType() {
 		return null;}

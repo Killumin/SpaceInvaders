@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import ControllerUndKI.StarshipController;
 import Enums.ActorType;
 import Enums.Direction;
@@ -18,7 +17,8 @@ public class Starship extends Actor {
 	private StarshipController controls;
 	private ActorType actType;
 
-	public Starship(Map map,Field f, StarshipController controls) {
+	public Starship(Map map,Field f,int w,int h) {
+		super(w,h);
 		this.projectiles = new ArrayList<Projectile>();
 		this.map = map;
 		this.myField = f;
@@ -75,9 +75,9 @@ public class Starship extends Actor {
 	
 	public void shoot(Direction dir) {
 		switch (dir) {
-		case RIGHTCLICK:projectiles.add(new Projectile(this.map.getField(myField.getX(), myField.getY()+1), Direction.UP, ShotType.SINGLESHOT, map));
+		case RIGHTCLICK:projectiles.add(new Projectile(this.map.getField(myField.getX(), myField.getY()+1), Direction.UP, ShotType.SINGLESHOT, map,5,5));
 						break;
-		case LEFTCLICK: projectiles.add(new Projectile(this.map.getField(myField.getX(), myField.getY()+1), Direction.UP, ShotType.BIGSHOT, map));
+		case LEFTCLICK: projectiles.add(new Projectile(this.map.getField(myField.getX(), myField.getY()+1), Direction.UP, ShotType.BIGSHOT, map,5,5));
 		default:
 			break;
 		}

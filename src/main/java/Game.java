@@ -70,7 +70,7 @@ public class Game {
 	
 	public void prepareLevel(int i) {
 		//this.projectiles.add(new Projectile(map.getField(4, 0), Direction.UP, ShotType.SINGLESHOT, map));
-		this.enemys.add(new SpaceInvader(SpaceInvaderType.PARSEC, map, new ParsecKI(), map.getField(4, 10)));
+		this.enemys.add(new SpaceInvader(SpaceInvaderType.PARSEC, map, new ParsecKI(), map.getField(4, 10),20,20));
 		this.map.setActor(4, 10, enemys.get(0));
 	}
 	

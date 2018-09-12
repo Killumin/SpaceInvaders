@@ -21,6 +21,11 @@ public class GUI extends Application implements GUIListener{
     private StackPane gameLayout;
     private Label ueberschrift;
     
+    // Game Shit 
+    private Map map;
+    private Starship s;
+    private Game g;
+    
     public static void main(String[] args) {
 		launch(args);
 	}
@@ -37,10 +42,10 @@ public class GUI extends Application implements GUIListener{
 
     private Scene menuScene(){
     	// Shit 
-		Map map = new Map();
+	    map = new Map();
 		map.generate(0);
-		Starship s = new Starship(map, map.getField(4, 15), null);
-		Game g = new Game(map, s);
+		s = new Starship(map, map.getField(4, 15),40,40);
+		g = new Game(map, s);
 		g.addGUIListener(this);
     	// end shit
         //Menu  Buttons
@@ -75,7 +80,7 @@ public class GUI extends Application implements GUIListener{
 
         //Game Layout
         gameLayout = new StackPane();
-        gameLayout.getChildren();
+        gameLayout.getChildren().addAll();
         gameLayout.setAlignment(Pos.CENTER);
         // Game Scene 
         gameScene = new Scene(gameLayout);
