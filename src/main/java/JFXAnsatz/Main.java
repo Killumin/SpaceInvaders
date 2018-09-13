@@ -1,7 +1,10 @@
 package JFXAnsatz;
 
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -9,14 +12,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 public class Main extends Application{
 	
 		private Stage window;
@@ -49,7 +53,7 @@ public class Main extends Application{
 	        startGameGui.setOnAction(e -> {
 	        try {
 				window.setScene(gameScene());
-			} catch (FileNotFoundException e1) {
+			} catch (FileNotFoundException | URISyntaxException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -71,9 +75,15 @@ public class Main extends Application{
 	        return menuScene;
 	    }
 	 
-	 private Scene gameScene() throws FileNotFoundException{
+	 private Scene gameScene() throws FileNotFoundException, URISyntaxException{
+		 	
+		 	// Musik
+		 	//Media musicFile = new Media("file:/C:/Users/Killumi/git/SpaceInvadersNew/Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3");
+		 	//Media musicFile = new Media("Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3");
+		 	//MediaPlayer meds = new MediaPlayer(musicFile);
+		 	//meds.setAutoPlay(true);
 		 	// Starship
-		 	Starship player = new Starship(null,16,16,true,true);
+		 	Starship player = new Starship(null,64,64,true,true);
 		 	ImageView starship = player.init();
 	        //Game Layout
 	        gameLayout = new StackPane();
