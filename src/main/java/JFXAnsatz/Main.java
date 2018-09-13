@@ -83,7 +83,7 @@ public class Main extends Application{
 		 	//MediaPlayer meds = new MediaPlayer(musicFile);
 		 	//meds.setAutoPlay(true);
 		 	// Starship
-		 	Starship player = new Starship(null,64,64,true,true);
+		 	Starship player = new Starship(null,96,96,true,true);
 		 	ImageView starship = player.init();
 	        //Game Layout
 	        gameLayout = new StackPane();
