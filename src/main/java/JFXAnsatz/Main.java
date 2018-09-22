@@ -1,26 +1,24 @@
 package JFXAnsatz;
 
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 public class Main extends Application{
 	
 		private Stage window;
@@ -30,6 +28,8 @@ public class Main extends Application{
 	    private StackPane menuLayout;
 	    private StackPane gameLayout;
 	    private Label ueberschrift;
+	    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+	    private double t = 0;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -90,6 +90,13 @@ public class Main extends Application{
 	        gameLayout.setBackground(null);
 	        gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
 	        
+	        AnimationTimer timer = new AnimationTimer() {
+	            @Override
+	            public void handle(long now) {
+	                update();
+	            }
+	        };
+	        timer.start();
 	        // Game Scene 
 	        gameScene = new Scene(gameLayout);
 	        //
@@ -109,8 +116,9 @@ public class Main extends Application{
               	  break;
               case SPACE:
 					try {
-						gameLayout.getChildren().add(player.shoot());
-						
+						Projectile shot = player.shoot();
+						gameLayout.getChildren().add(shot);
+						this.projectiles.add(shot);
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
 					}
@@ -121,6 +129,33 @@ public class Main extends Application{
 	        window.setFullScreen(true);
 
 	        return gameScene;
+	    }
+	 
+	 private void update() {
+	        t += 0.016;
+
+	        this.projectiles.forEach(p -> {
+	            switch (p.getType()) {
+
+	                case "projectile":
+	                    p.move();
+
+//	                    if (s.getBoundsInParent().intersects(player.getBoundsInParent())) {
+//	                        player.dead = true;
+//	                        s.dead = true;
+//	                    }
+	                    break;
+	            }
+	        });
+
+//	        root.getChildren().removeIf(n -> {
+//	            Sprite s = (Sprite) n;
+//	            return s.dead;
+//	        });
+
+	        if (t > 2) {
+	            t = 0;
+	        }
 	    }
 	 
 	    
