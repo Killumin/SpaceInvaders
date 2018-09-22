@@ -109,7 +109,8 @@ public class Main extends Application{
               	  break;
               case SPACE:
 					try {
-						player.shoot();
+						gameLayout.getChildren().add(player.shoot());
+						
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
 					}
