@@ -84,10 +84,9 @@ public class Main extends Application{
 		 	//meds.setAutoPlay(true);
 		 	// Starship
 		 	Starship player = new Starship(null,96,96,true,true);
-		 	ImageView starship = player.init();
 	        //Game Layout
 	        gameLayout = new StackPane();
-	        gameLayout.getChildren().add(starship);
+	        gameLayout.getChildren().add(player);
 	        gameLayout.setBackground(null);
 	        gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
 	        
@@ -97,17 +96,24 @@ public class Main extends Application{
 			gameScene.setOnKeyPressed(e -> {
 				switch (e.getCode()) {
               case A:
-                  player.moveLeft(starship);
+                  player.moveLeft();
                   break;
               case D:
-                  player.moveRight(starship);
+                  player.moveRight();
                   break;
               case W:
-              	  player.moveUp(starship);
+              	  player.moveUp();
               	  break;
               case S:
-             	  player.moveDown(starship);
+             	  player.moveDown();
               	  break;
+              case SPACE:
+					try {
+						player.shoot();
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					}
+            	  break;
 				}});
 	        window.setScene(gameScene);
 	        window.setFullScreenExitHint("");

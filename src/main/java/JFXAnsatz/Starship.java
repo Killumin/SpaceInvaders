@@ -7,10 +7,12 @@ import java.io.InputStream;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Starship extends Image {
+public class Starship extends ImageView {
 
 	public Starship(InputStream arg0, double arg1, double arg2, boolean arg3, boolean arg4) throws FileNotFoundException {
-		super(new FileInputStream("./StarshipTimon.png"), arg1, arg2, arg3, arg4);
+		super(new Image(new FileInputStream("./StarshipTimon.png"), arg1, arg2, arg3, arg4));
+		this.setTranslateX(0);
+        this.setTranslateY(0);
 	}
 
 //	public Starship(int x, int y, int w, int h, String type, Color color) {
@@ -19,30 +21,25 @@ public class Starship extends Image {
 //        setTranslateX(x);
 //        setTranslateY(y);
 //    }
-
-    public ImageView init() {
-    	
-    	ImageView RealShip = new ImageView(this);
-    	RealShip.setTranslateX(0);
-        RealShip.setTranslateY(0);
-    	return RealShip;
-    }
     
-    void moveLeft(ImageView iv) {
-        iv.setTranslateX(iv.getTranslateX() - 15);
+    void moveLeft() {
+        this.setTranslateX(this.getTranslateX() - 15);
     }
 
-    void moveRight(ImageView iv) {
-    	iv.setTranslateX(iv.getTranslateX() + 15);
+    void moveRight() {
+    	this.setTranslateX(this.getTranslateX() + 15);
     }
 
-    void moveUp(ImageView iv) {
-    	iv.setTranslateY(iv.getTranslateY() - 15);
+    void moveUp() {
+    	this.setTranslateY(this.getTranslateY() - 15);
     }
 
-    void moveDown(ImageView iv) {
-    	iv.setTranslateY(iv.getTranslateY() + 15);
+    void moveDown() {
+    	this.setTranslateY(this.getTranslateY() + 15);
     }
 	
+    void shoot() throws FileNotFoundException {
+    	new Projectile(this.getTranslateX() + 15, this.getTranslateY() + 15);
+    }
 
 }
