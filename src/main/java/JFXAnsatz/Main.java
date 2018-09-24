@@ -92,7 +92,7 @@ public class Main extends Application{
 	        gameLayout.getChildren().add(player);
 	        // Background
 	        gameLayout.setBackground(null);
-	        BackgroundImage myBI= new BackgroundImage(new Image("./HubbleDeepFieldPixel.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+	        BackgroundImage myBI= new BackgroundImage(new Image("./Graphics/HubbleDeepFieldPixel.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 	        gameLayout.setBackground(new Background(myBI));
 	        // gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
 	        
