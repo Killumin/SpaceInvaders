@@ -7,16 +7,19 @@ import java.util.ArrayList;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -79,16 +82,19 @@ public class Main extends Application{
 		 	
 		 	// Musik
 		 	//Media musicFile = new Media("file:/C:/Users/Killumi/git/SpaceInvadersNew/Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3");
-		 	//Media musicFile = new Media("Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3");
+		 	//Media musicFile = new Media(this.getClass().getResource("Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3").toExternalForm());
 		 	//MediaPlayer meds = new MediaPlayer(musicFile);
 		 	//meds.setAutoPlay(true);
 		 	// Starship
 		 	Starship player = new Starship(null,96,96,true,true);
-	        //Game Layout
+	        // Game Layout
 	        gameLayout = new StackPane();
 	        gameLayout.getChildren().add(player);
+	        // Background
 	        gameLayout.setBackground(null);
-	        gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
+	        BackgroundImage myBI= new BackgroundImage(new Image("./HubbleDeepFieldPixel.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+	        gameLayout.setBackground(new Background(myBI));
+	        // gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
 	        
 	        AnimationTimer timer = new AnimationTimer() {
 	            @Override
