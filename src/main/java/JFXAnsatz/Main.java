@@ -1,6 +1,10 @@
 package JFXAnsatz;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
@@ -25,7 +29,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Main extends Application{
+public class Main extends Application implements KeyListener,ActionListener{
 	
 		private Stage window;
 	    private Scene menuScene;
@@ -54,12 +58,12 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		
 		window = stage;
 		window.setScene(menuScene());
         window.setTitle("SpaceInvader");
         window.show();
-		
+
+	
 	}
 	
 	 private Scene menuScene() throws FileNotFoundException{
@@ -144,28 +148,29 @@ public class Main extends Application{
 	        moveUp  = false;
 	        moveDown = false;
 	        shoot = false;
+
 	        
-			gameScene.setOnKeyPressed(e -> {
-				switch (e.getCode()) {
-              case A:
-            	  moveLeft = true;
-                  //player.moveLeft();
-                  break;
-              case D:
-            	  moveRight = true;
-                  //player.moveRight();
-                  break;
-              case W:
-            	  moveUp = true;
-              	  //player.moveUp();
-              	  break;
-              case S:
-            	  moveDown = true;
-             	  //player.moveDown();
-              	  break;
-              case SPACE:
-            	  shoot = true;
-				}});
+//			gameScene.setOnKeyPressed(e -> {
+//				switch (e.getCode()) {
+//              case A:
+//            	  moveLeft = true;
+//                  //player.moveLeft();
+//                  break;
+//              case D:
+//            	  moveRight = true;
+//                  //player.moveRight();
+//                  break;
+//              case W:
+//            	  moveUp = true;
+//              	  //player.moveUp();
+//              	  break;
+//              case S:
+//            	  moveDown = true;
+//             	  //player.moveDown();
+//              	  break;
+//              case SPACE:
+//            	  shoot = true;
+//				}});
 	        window.setScene(gameScene);
 	        window.setFullScreenExitHint("");
 	        window.setFullScreen(true);
@@ -250,6 +255,44 @@ public class Main extends Application{
 	        }
 	    }
 	 
+	 // TESTABSCHNITT DO NOT ENETER WITHOUT PERMISSION 
+	 
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+
+				switch (e.getKeyCode()) {
+              case KeyEvent.VK_A:
+            	  moveLeft = true;
+                  //player.moveLeft();
+                  break;
+              case KeyEvent.VK_D:
+            	  moveRight = true;
+                  //player.moveRight();
+                  break;
+              case KeyEvent.VK_W:
+            	  moveUp = true;
+              	  //player.moveUp();
+              	  break;
+              case KeyEvent.VK_S:
+            	  moveDown = true;
+             	  //player.moveDown();
+              	  break;
+              case KeyEvent.VK_SPACE:
+            	  shoot = true;
+				};	
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+		}
+	 //ABSCHNITTCLOSED
 	    
 	    public Scene getMenuScene() {
 	    	return menuScene;
@@ -262,5 +305,11 @@ public class Main extends Application{
 	    public void setScene(Scene scene) {
 	    	window.setScene(scene);
 	    }
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 
 }
