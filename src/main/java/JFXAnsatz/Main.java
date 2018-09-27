@@ -38,6 +38,13 @@ public class Main extends Application{
 	    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	    private double t = 0;
 	    private Starship player;
+	    
+	    
+	    
+	    private boolean moveLeft;
+	    private boolean moveRight;
+	    private boolean moveUp;
+	    private boolean moveDown;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -133,16 +140,20 @@ public class Main extends Application{
 			gameScene.setOnKeyPressed(e -> {
 				switch (e.getCode()) {
               case A:
-                  player.moveLeft();
+            	  moveLeft = true;
+                  //player.moveLeft();
                   break;
               case D:
-                  player.moveRight();
+            	  moveRight = true;
+                  //player.moveRight();
                   break;
               case W:
-              	  player.moveUp();
+            	  moveUp = true;
+              	  //player.moveUp();
               	  break;
               case S:
-             	  player.moveDown();
+            	  moveDown = true;
+             	  //player.moveDown();
               	  break;
               case SPACE:
 					try {
@@ -163,7 +174,23 @@ public class Main extends Application{
 	 
 	 private void update() {
 	        t += 0.016;
-
+	        
+	        if(moveLeft) {
+	        	player.moveLeft();
+	        }
+	        
+	        if(moveRight) {
+	        	player.moveRight();
+	        }
+	        
+	        if(moveUp) {
+	        	player.moveUp();
+	        }
+	        
+	        if(moveDown) {
+	        	player.moveDown();
+	        }
+	        
 	        this.projectiles.forEach(p -> {
 	            switch (p.getType()) {
 
