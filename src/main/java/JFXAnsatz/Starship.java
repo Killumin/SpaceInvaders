@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Starship extends ImageView {
+	
+	private Boolean dead;
 
 	public Starship(InputStream arg0, double arg1, double arg2, boolean arg3, boolean arg4) throws FileNotFoundException {
 		super(new Image(new FileInputStream("./StarshipTimon.png"), arg1, arg2, arg3, arg4));
@@ -39,7 +41,14 @@ public class Starship extends ImageView {
     }
 	
     Projectile shoot() throws FileNotFoundException {
-    	return new Projectile(this.getTranslateX(), this.getTranslateY() - 25);
+    	return new Projectile(this.getTranslateX(), this.getTranslateY() - 60);
     }
 
+    void setDead() {
+		this.dead = true;
+	}
+	
+	Boolean isDead() {
+		return this.dead;
+	}
 }

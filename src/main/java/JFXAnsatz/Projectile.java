@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 public class Projectile extends ImageView {
 	
 	private String type;
+	private Boolean dead;
 	
 	public Projectile(double x, double y) throws FileNotFoundException {
 	super(new Image(new FileInputStream("./Bullet.png"), 16, 16, true, true));
@@ -23,6 +24,14 @@ public class Projectile extends ImageView {
 	
 	String getType() {
 		return this.type;
+	}
+	
+	void setDead() {
+		this.dead = true;
+	}
+	
+	Boolean isDead() {
+		return this.dead;
 	}
 }
 

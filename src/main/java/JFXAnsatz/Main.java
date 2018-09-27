@@ -37,6 +37,7 @@ public class Main extends Application{
 	    private Label ueberschrift;
 	    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	    private double t = 0;
+	    private Starship player;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -107,10 +108,12 @@ public class Main extends Application{
 		 	//MediaPlayer meds = new MediaPlayer(musicFile);
 		 	//meds.setAutoPlay(true);
 		 	// Starship
-		 	Starship player = new Starship(null,96,96,true,true);
+		 	player = new Starship(null,96,96,true,true);
+		 	SpaceInvader si = new SpaceInvader(0,-200);
 	        // Game Layout
 	        gameLayout = new StackPane();
 	        gameLayout.getChildren().add(player);
+	        gameLayout.getChildren().add(si);
 	        // Background
 
 	        //gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
@@ -167,18 +170,22 @@ public class Main extends Application{
 	                case "projectile":
 	                    p.move();
 
-//	                    if (s.getBoundsInParent().intersects(player.getBoundsInParent())) {
-//	                        player.dead = true;
-//	                        s.dead = true;
-//	                    }
+	                    if (p.getBoundsInParent().intersects(player.getBoundsInParent())) {
+	                        player.setDead();
+	                        p.setDead();
+	                    }
 	                    break;
 	            }
 	        });
 
-//	        root.getChildren().removeIf(n -> {
-//	            Sprite s = (Sprite) n;
-//	            return s.dead;
-//	        });
+	        gameLayout.getChildren().removeIf(n -> {
+	        	if (n instanceof Projectile) {
+	        	Projectile p = (Projectile) n;
+	            return p.isDead();
+	        	} else {
+	        	return false;
+	        	}
+	        });
 
 	        if (t > 2) {
 	            t = 0;
