@@ -174,7 +174,7 @@ public class Main extends Application{
 	    }
 	 
 	 private void update() {
-	        t += 0.00006;
+	        t += 0.016;
 	        
 	        if(moveLeft) {
 	        	player.moveLeft();
@@ -223,9 +223,14 @@ public class Main extends Application{
 	        this.projectiles.forEach(p -> {
 	        	if (p.isDead()) {
 	        		gameLayout.getChildren().remove(p);
-	        		projectiles.remove(p);
 	        	}
-	        });
+     		});
+	        
+	        for(int i = 0; i < projectiles.size(); i++) {
+	        	if (projectiles.get(i).isDead()) {
+	        		projectiles.remove(i);
+	        	}
+	        }
 
 	        if (t > 2) {
 	            t = 0;
