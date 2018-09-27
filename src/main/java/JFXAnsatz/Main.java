@@ -38,7 +38,7 @@ public class Main extends Application{
 	    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	    private double t = 0;
 	    private Starship player;
-	    private SpaceInvader si;
+	    private ArrayList<SpaceInvader> spaceInvaders = new ArrayList<SpaceInvader>();
 	    
 	    
 	    
@@ -117,11 +117,11 @@ public class Main extends Application{
 		 	//meds.setAutoPlay(true);
 		 	// Starship
 		 	player = new Starship(null,96,96,true,true);
-		 	si = new SpaceInvader(0,-200);
+		 	spaceInvaders.add(new SpaceInvader(0,-200));
 	        // Game Layout
 	        gameLayout = new StackPane();
 	        gameLayout.getChildren().add(player);
-	        gameLayout.getChildren().add(si);
+	        gameLayout.getChildren().add(spaceInvaders.get(0));
 	        // Background
 
 	        //gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
@@ -211,10 +211,11 @@ public class Main extends Application{
 
 	                case "projectile":
 	                    p.move();
-
-	                    if (p.getBoundsInParent().intersects(si.getBoundsInParent())) {
-	                        player.setDead();
+	                    if (!spaceInvaders.isEmpty()) {
+	                    if (p.getBoundsInParent().intersects(spaceInvaders.get(0).getBoundsInParent())) {
 	                        p.setDead();
+	                        spaceInvaders.get(0).setDead();
+	                    }
 	                    }
 	                    break;
 	            }
@@ -229,6 +230,18 @@ public class Main extends Application{
 	        for(int i = 0; i < projectiles.size(); i++) {
 	        	if (projectiles.get(i).isDead()) {
 	        		projectiles.remove(i);
+	        	}
+	        }
+	        
+	        this.spaceInvaders.forEach(s -> {
+	        	if (s.isDead()) {
+	        		gameLayout.getChildren().remove(s);
+	        	}
+	        });
+	        
+	        for(int i = 0; i < spaceInvaders.size(); i++) {
+	        	if (spaceInvaders.get(i).isDead()) {
+	        		spaceInvaders.remove(i);
 	        	}
 	        }
 
