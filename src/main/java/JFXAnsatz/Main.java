@@ -45,6 +45,7 @@ public class Main extends Application{
 	    private boolean moveRight;
 	    private boolean moveUp;
 	    private boolean moveDown;
+	    private boolean shoot;
 	
 	public static void main(String[] args) {
 		launch(args);	
@@ -141,6 +142,7 @@ public class Main extends Application{
 	        moveRight = false;
 	        moveUp  = false;
 	        moveDown = false;
+	        shoot = false;
 	        
 			gameScene.setOnKeyPressed(e -> {
 				switch (e.getCode()) {
@@ -161,14 +163,7 @@ public class Main extends Application{
              	  //player.moveDown();
               	  break;
               case SPACE:
-					try {
-						Projectile shot = player.shoot();
-						gameLayout.getChildren().add(shot);
-						this.projectiles.add(shot);
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
-					}
-            	  break;
+            	  shoot = true;
 				}});
 	        window.setScene(gameScene);
 	        window.setFullScreenExitHint("");
@@ -198,6 +193,15 @@ public class Main extends Application{
 	        if(moveDown) {
 	        	player.moveDown();
 	        	moveDown = false;
+	        }
+	        if (shoot) {
+	        	try {
+					Projectile shot = player.shoot();
+					gameLayout.getChildren().add(shot);
+					this.projectiles.add(shot);
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
 	        }
 	        
 	        this.projectiles.forEach(p -> {
