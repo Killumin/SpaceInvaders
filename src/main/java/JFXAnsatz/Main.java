@@ -1,25 +1,28 @@
 package JFXAnsatz;
 
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -28,6 +31,7 @@ public class Main extends Application{
 	    private Scene menuScene;
 	    private Scene gameScene;
 	    private Button startGameGui;
+	    private Button optionsButton;
 	    private StackPane menuLayout;
 	    private StackPane gameLayout;
 	    private Label ueberschrift;
@@ -49,7 +53,7 @@ public class Main extends Application{
 		
 	}
 	
-	 private Scene menuScene(){
+	 private Scene menuScene() throws FileNotFoundException{
 
 	        //Menu  Buttons
 	        startGameGui = new Button("Start Game");
@@ -61,6 +65,10 @@ public class Main extends Application{
 				e1.printStackTrace();
 			}
 	        });
+	        startGameGui.setTranslateX(0);
+	        startGameGui.setTranslateY(100);
+	        
+	        optionsButton = new Button("Options");
 	             
 	        //Menu Labels
 	        ueberschrift = new Label();
@@ -68,8 +76,11 @@ public class Main extends Application{
 
 	        //Menu Layout
 	        menuLayout = new StackPane();
-	        menuLayout.getChildren().addAll(ueberschrift, startGameGui);
-	        menuLayout.setAlignment(Pos.CENTER);
+	        menuLayout.getChildren().addAll(ueberschrift);
+	        menuLayout.setAlignment(Pos.TOP_CENTER);
+	        menuLayout.getChildren().addAll(startGameGui);
+	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("./HubbleDeepFieldPixel.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+	        menuLayout.setBackground(new Background(myBI));
 
 	        // Menu Scene 
 	        int width = 600;
@@ -81,8 +92,8 @@ public class Main extends Application{
 	 private Scene gameScene() throws FileNotFoundException, URISyntaxException{
 		 	
 		 	// Musik
-		 	//Media musicFile = new Media("file:/C:/Users/Killumi/git/SpaceInvadersNew/Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3");
-		 	//Media musicFile = new Media(this.getClass().getResource("Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3").toExternalForm());
+		 	//Media musicFile = new Media(new FileInputStream("./Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3"));
+//		 	Media musicFile = new Media(this.getClass().getResource("Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3").toExternalForm());
 		 	//MediaPlayer meds = new MediaPlayer(musicFile);
 		 	//meds.setAutoPlay(true);
 		 	// Starship
@@ -92,9 +103,7 @@ public class Main extends Application{
 	        gameLayout.getChildren().add(player);
 	        // Background
 	        gameLayout.setBackground(null);
-	        BackgroundImage myBI= new BackgroundImage(new Image("./HubbleDeepFieldPixel.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-	        gameLayout.setBackground(new Background(myBI));
-	        // gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
+	        gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
 	        
 	        AnimationTimer timer = new AnimationTimer() {
 	            @Override
