@@ -65,6 +65,7 @@ public class Main extends Application{
 				e1.printStackTrace();
 			}
 	        });
+	        
 	        startGameGui.setTranslateX(0);
 	        startGameGui.setTranslateY(100);
 	        
@@ -87,9 +88,7 @@ public class Main extends Application{
 	        //Menu Layout
 	        menuLayout = new StackPane();
 	        menuLayout.setAlignment(Pos.TOP_CENTER);
-	        menuLayout.getChildren().addAll(ueberschrift);
-	        menuLayout.getChildren().addAll(startGameGui);
-	        menuLayout.getChildren().addAll(optionsButton);
+	        menuLayout.getChildren().addAll(ueberschrift,optionsButton,startGameGui);
 	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("./HubbleDeepFieldPixel.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 	        menuLayout.setBackground(new Background(myBI));
 
@@ -102,7 +101,7 @@ public class Main extends Application{
 	 
 	 private Scene gameScene() throws FileNotFoundException, URISyntaxException{
 		 	
-		 	// Musik
+		 	// Music
 		 	//Media musicFile = new Media(new FileInputStream("./Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3"));
 //		 	Media musicFile = new Media(this.getClass().getResource("Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3").toExternalForm());
 		 	//MediaPlayer meds = new MediaPlayer(musicFile);
@@ -113,8 +112,9 @@ public class Main extends Application{
 	        gameLayout = new StackPane();
 	        gameLayout.getChildren().add(player);
 	        // Background
-	        gameLayout.setBackground(null);
-	        gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
+
+	        //gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
+	        gameLayout.setBackground(new Background(new BackgroundImage(new Image(new FileInputStream("./Space.png")),BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 	        
 	        AnimationTimer timer = new AnimationTimer() {
 	            @Override
