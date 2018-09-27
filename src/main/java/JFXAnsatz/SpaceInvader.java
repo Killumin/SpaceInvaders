@@ -16,6 +16,7 @@ private Boolean dead;
 	this.type = "SpaceInvader";
 	this.setTranslateX(x);
 	this.setTranslateY(y);
+	dead = false;
 	}
 	
 	String getType() {

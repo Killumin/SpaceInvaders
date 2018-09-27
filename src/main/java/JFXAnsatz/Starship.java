@@ -15,6 +15,7 @@ public class Starship extends ImageView {
 		super(new Image(new FileInputStream("./StarshipTimon.png"), arg1, arg2, arg3, arg4));
 		this.setTranslateX(0);
         this.setTranslateY(0);
+        dead = false;
 	}
 
 //	public Starship(int x, int y, int w, int h, String type, Color color) {
@@ -41,7 +42,7 @@ public class Starship extends ImageView {
     }
 	
     Projectile shoot() throws FileNotFoundException {
-    	return new Projectile(this.getTranslateX(), this.getTranslateY() - 60);
+    	return new Projectile(this.getTranslateX(), this.getTranslateY() - 25);
     }
 
     void setDead() {

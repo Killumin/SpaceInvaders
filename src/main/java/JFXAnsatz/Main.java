@@ -218,12 +218,10 @@ public class Main extends Application{
 	            }
 	        });
 
-	        gameLayout.getChildren().removeIf(n -> {
-	        	if (n instanceof Projectile) {
-	        	Projectile p = (Projectile) n;
-	            return p.isDead();
-	        	} else {
-	        	return false;
+	        this.projectiles.forEach(p -> {
+	        	if (p.isDead()) {
+	        		gameLayout.getChildren().remove(p);
+	        		projectiles.remove(p);
 	        	}
 	        });
 

@@ -16,6 +16,7 @@ public class Projectile extends ImageView {
 	this.type = "projectile";
 	this.setTranslateX(x);
 	this.setTranslateY(y);
+	dead = false;
 	}
 	
 	void move() {
