@@ -173,7 +173,7 @@ public class Main extends Application{
 	    }
 	 
 	 private void update() {
-	        t += 0.016;
+	        t += 0.00006;
 	        
 	        if(moveLeft) {
 	        	player.moveLeft();
@@ -202,6 +202,7 @@ public class Main extends Application{
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
+	        	shoot = false;
 	        }
 	        
 	        this.projectiles.forEach(p -> {
