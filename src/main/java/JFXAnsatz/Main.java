@@ -38,6 +38,7 @@ public class Main extends Application{
 	    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	    private double t = 0;
 	    private Starship player;
+	    private SpaceInvader si;
 	    
 	    
 	    
@@ -116,7 +117,7 @@ public class Main extends Application{
 		 	//meds.setAutoPlay(true);
 		 	// Starship
 		 	player = new Starship(null,96,96,true,true);
-		 	SpaceInvader si = new SpaceInvader(0,-200);
+		 	si = new SpaceInvader(0,-200);
 	        // Game Layout
 	        gameLayout = new StackPane();
 	        gameLayout.getChildren().add(player);
@@ -211,7 +212,7 @@ public class Main extends Application{
 	                case "projectile":
 	                    p.move();
 
-	                    if (p.getBoundsInParent().intersects(player.getBoundsInParent())) {
+	                    if (p.getBoundsInParent().intersects(si.getBoundsInParent())) {
 	                        player.setDead();
 	                        p.setDead();
 	                    }
