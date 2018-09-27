@@ -39,7 +39,7 @@ public class Starship extends ImageView {
     }
 	
     Projectile shoot() throws FileNotFoundException {
-    	return new Projectile(this.getTranslateX() + 15, this.getTranslateY() + 15);
+    	return new Projectile(this.getTranslateX(), this.getTranslateY() - 25);
     }
 
 }
