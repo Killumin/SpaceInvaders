@@ -69,6 +69,16 @@ public class Main extends Application{
 	        startGameGui.setTranslateY(100);
 	        
 	        optionsButton = new Button("Options");
+	        optionsButton.setOnAction(e -> {
+		        try {
+					window.setScene(gameScene());
+				} catch (FileNotFoundException | URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		        });
+	        optionsButton.setTranslateX(0);
+	        optionsButton.setTranslateY(150);
 	             
 	        //Menu Labels
 	        ueberschrift = new Label();
@@ -76,9 +86,10 @@ public class Main extends Application{
 
 	        //Menu Layout
 	        menuLayout = new StackPane();
-	        menuLayout.getChildren().addAll(ueberschrift);
 	        menuLayout.setAlignment(Pos.TOP_CENTER);
+	        menuLayout.getChildren().addAll(ueberschrift);
 	        menuLayout.getChildren().addAll(startGameGui);
+	        menuLayout.getChildren().addAll(optionsButton);
 	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("./HubbleDeepFieldPixel.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 	        menuLayout.setBackground(new Background(myBI));
 
