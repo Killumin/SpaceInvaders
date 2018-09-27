@@ -47,8 +47,7 @@ public class Main extends Application{
 	    private boolean moveDown;
 	
 	public static void main(String[] args) {
-		launch(args);
-
+		launch(args);	
 	}
 
 	@Override
@@ -137,6 +136,12 @@ public class Main extends Application{
 	        // Game Scene 
 	        gameScene = new Scene(gameLayout);
 	        //
+	        
+	        moveLeft = false;
+	        moveRight = false;
+	        moveUp  = false;
+	        moveDown = false;
+	        
 			gameScene.setOnKeyPressed(e -> {
 				switch (e.getCode()) {
               case A:
@@ -177,18 +182,22 @@ public class Main extends Application{
 	        
 	        if(moveLeft) {
 	        	player.moveLeft();
+	        	moveLeft = false;
 	        }
 	        
 	        if(moveRight) {
 	        	player.moveRight();
+	        	moveRight = false;
 	        }
 	        
 	        if(moveUp) {
 	        	player.moveUp();
+	        	moveUp = false;
 	        }
 	        
 	        if(moveDown) {
 	        	player.moveDown();
+	        	moveDown = false;
 	        }
 	        
 	        this.projectiles.forEach(p -> {
