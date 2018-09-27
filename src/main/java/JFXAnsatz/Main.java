@@ -114,7 +114,8 @@ public class Main extends Application{
 	        // Background
 
 	        //gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
-	        gameLayout.setBackground(new Background(new BackgroundImage(new Image(new FileInputStream("./Space.png")),BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+	        gameLayout.setBackground(new Background( new BackgroundImage(new Image(new FileInputStream("./Space.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+	  
 	        
 	        AnimationTimer timer = new AnimationTimer() {
 	            @Override
