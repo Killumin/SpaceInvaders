@@ -30,6 +30,7 @@ public class Level1  {
     private StackPane gameLayout;
     private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
     private double t = 0;
+    private double s = 0;
     private Starship player;
     private ArrayList<SpaceInvader> spaceInvaders = new ArrayList<SpaceInvader>();
     
@@ -149,6 +150,7 @@ public class Level1  {
 	 
 	 private void update() {
 	        t += 0.016;
+	        s += 0.01;
 	        
 	        if (t > 2) {
 	        	this.spaceInvaders.forEach(s -> {
@@ -158,6 +160,7 @@ public class Level1  {
 	        
 	       player.move();
 	       
+	       if(s > 0.1)
 	        if (shoot) {
 	        	try {
 					Projectile shot = player.shoot();
@@ -211,6 +214,9 @@ public class Level1  {
 	        	}
 	        }
 
+	        if (s > 0.1) {
+	        	s = 0;
+	        }
 	        if (t > 2) {
 	            t = 0;
 	        }
