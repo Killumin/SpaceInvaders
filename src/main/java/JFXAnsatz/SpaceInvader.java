@@ -1,59 +1,24 @@
 package JFXAnsatz;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
+import Projectiles.EnemyShots;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class SpaceInvader extends ImageView{
+public abstract class SpaceInvader extends ImageView {
 
-private String type;
-private Boolean dead;
-private int stamp;
-	
-	public SpaceInvader(double x, double y) throws FileNotFoundException {
-	super(new Image(new FileInputStream("./Starship.png"), 96, 96, true, true));
-	this.type = "SpaceInvader";
-	this.setTranslateX(x);
-	this.setTranslateY(y);
-	stamp = 0;
-	dead = false;
+	public SpaceInvader(Image image) {
+		super(image);
 	}
 	
-	void doMove() {
-		if (stamp == 0) {
-			this.setTranslateX(this.getTranslateX() - 35);
-			stamp++;
-			return;
-		}
-		if (stamp == 1) {
-			this.setTranslateY(this.getTranslateY() - 35);
-			stamp++;
-			return;
-		}
-		if (stamp == 2) {
-			this.setTranslateX(this.getTranslateX() + 35);
-			stamp++;
-			return;
-		}
-		if (stamp == 3) {
-			this.setTranslateY(this.getTranslateY() + 35);
-			stamp = 0;
-			return;
-		}
+	public void doMove() {}
+	
+	public EnemyShots shoot() {
+		return null;
 	}
 	
-	String getType() {
-		return this.type;
-	}
+	public void setToDead() {}
 	
-	void setDead() {
-		this.dead = true;
+	public boolean isDead() {
+		return false;
 	}
-	
-	Boolean isDead() {
-		return this.dead;
-	}
-	
 }

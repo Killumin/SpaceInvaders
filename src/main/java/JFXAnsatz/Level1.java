@@ -1,14 +1,15 @@
 package JFXAnsatz;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import Projectiles.EnemyShots;
+import Projectiles.Projectile;
+import SpaceInvaders.CDJ;
+import SpaceInvaders.FastCDJ;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -21,7 +22,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.scene.input.MouseEvent;
 
 public class Level1  {
 	
@@ -29,10 +29,12 @@ public class Level1  {
     private Scene myScene;
     private StackPane gameLayout;
     private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+    private ArrayList<EnemyShots> enemyShots = new ArrayList<EnemyShots>();
     private double t = 0;
     private double s = 0;
     private Starship player;
     private ArrayList<SpaceInvader> spaceInvaders = new ArrayList<SpaceInvader>();
+    private long timeStamp;
     
     private boolean horiA;
     private boolean horiD;
@@ -43,6 +45,7 @@ public class Level1  {
 	 		public Level1(Stage window) throws FileNotFoundException, URISyntaxException{
 		 	this.window = window;
 	 		myScene = gameScene();
+	 		timeStamp = System.currentTimeMillis();
 	 		
 	    }
 	 		
@@ -57,11 +60,17 @@ public class Level1  {
 			 	meds.setVolume(0.09);
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
-			 	spaceInvaders.add(new SpaceInvader(0,-200));
+			 	spaceInvaders.add(new CDJ(0,-600));
+			 	spaceInvaders.add(new FastCDJ(200,-600));
+			 	spaceInvaders.add(new CDJ(-200,-600));
+			 	spaceInvaders.add(new FastCDJ(-400,-600));
 		        // Game Layout
 		        gameLayout = new StackPane();
 		        gameLayout.getChildren().add(player);
 		        gameLayout.getChildren().add(spaceInvaders.get(0));
+		        gameLayout.getChildren().add(spaceInvaders.get(1));
+		        gameLayout.getChildren().add(spaceInvaders.get(2));
+		        gameLayout.getChildren().add(spaceInvaders.get(3));
 		        // Background
 
 		        //gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
@@ -71,7 +80,11 @@ public class Level1  {
 		        AnimationTimer timer = new AnimationTimer() {
 		            @Override
 		            public void handle(long now) {
-		                update();
+		                try {
+							update();
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+						}
 		            }
 		        };
 		        timer.start();
@@ -148,18 +161,33 @@ public class Level1  {
 		        return gameScene;
 		    }
 	 
-	 private void update() {
+	 private void update() throws FileNotFoundException {
+		 
+		 if(System.currentTimeMillis() - timeStamp > 10000) {
+			 CDJ c = new CDJ(0,-600);
+			 gameLayout.getChildren().add(c);
+			 spaceInvaders.add(c);
+			 this.timeStamp = System.currentTimeMillis();
+		 }
+		 
+		 // Zeitparameter
 	        t += 0.016;
 	        s += 0.01;
 	        
-	        if (t > 2) {
-	        	this.spaceInvaders.forEach(s -> {
-	        		s.doMove();
-	        	});
-	        }
+	     // SpaceInvader bewegen sich und geben evtl. Schüsse ab
+	        this.spaceInvaders.forEach(s -> {
+	        	EnemyShots e = s.shoot();
+	        	if(e != null) {
+	        	gameLayout.getChildren().add(e);
+	        	this.enemyShots.add(e);
+	        	}
+	        	s.doMove();
+	        });
 	        
+	     // Das Player-Movement wird verarbeitet
 	       player.move();
 	       
+	     // Die Player-Schüsse werden verarbeitet
 	       if(s > 0.1)
 	        if (shoot) {
 	        	try {
@@ -170,17 +198,30 @@ public class Level1  {
 					e1.printStackTrace();
 				}
 	        }
+	       
+	      // Die Gegnerischen Schüsse bewegen sich
+	        this.enemyShots.forEach(e -> {
+	        	switch (e.getType()) {
+
+                case "cdjprojectile":
+                	e.move();
+                	break;
+	        }
+	        });
 	        
+	      // Die Schüsse des Spielers bewegen sich und zerstören evtl. Gegner
 	        this.projectiles.forEach(p -> {
 	            switch (p.getType()) {
 
 	                case "projectile":
 	                    p.move();
 	                    if (!spaceInvaders.isEmpty()) {
-	                    if (p.getBoundsInParent().intersects(spaceInvaders.get(0).getBoundsInParent())) {
+	                    	for(int i = 0; i < spaceInvaders.size(); i++) {
+	                    if (p.getBoundsInParent().intersects(spaceInvaders.get(i).getBoundsInParent())) {
 	                        p.setDead();
-	                        spaceInvaders.get(0).setDead();
+	                        spaceInvaders.get(i).setToDead();
 	                    }
+	                    	}
 	                    }
 	                    break;
 	            }
