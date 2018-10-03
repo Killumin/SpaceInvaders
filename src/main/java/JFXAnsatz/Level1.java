@@ -99,12 +99,17 @@ public class Level1  {
 	           	  break;
 					}
 			   });
-				
-				gameScene.setOnMouseClicked(m -> {
+							
+				gameScene.setOnMousePressed(m -> {
 					if (m.getButton().name().equals("PRIMARY"))
 						shoot = true;
 				});
-	
+				
+				gameScene.setOnMouseReleased(m -> {
+					if (m.getButton().name().equals("PRIMARY"))
+						shoot = false;
+				});
+
 				
 				gameScene.setOnKeyReleased(e -> {
 					switch(e.getCode()) {
@@ -161,7 +166,6 @@ public class Level1  {
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
-	        	shoot = false;
 	        }
 	        
 	        this.projectiles.forEach(p -> {
