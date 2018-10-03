@@ -15,7 +15,7 @@ private int stamp;
 private CDJProjectile projectile;
 	
 	public FastCDJ(double x, double y) throws FileNotFoundException {
-	super(new Image(new FileInputStream("./Starship.png"), 96, 96, true, true));
+	super(new Image(new FileInputStream("./Pioneer.png"), 96, 96, true, true));
 	this.type = "SpaceInvader";
 	this.setTranslateX(x);
 	this.setTranslateY(y);
