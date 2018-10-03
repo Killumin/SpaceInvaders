@@ -97,14 +97,11 @@ public class Level1  {
 	        	   player.setVelY(5);
 	        	   vertS = true;
 	           	  break;
-//	           case Space:
-//	         	  shoot = true;
 					}
 			   });
 				
 				gameScene.setOnMouseClicked(m -> {
-					if (m.getButton().equals("PRIMARY"))
-						System.out.println("Test für Chris");
+					if (m.getButton().name().equals("PRIMARY"))
 						shoot = true;
 				});
 	
