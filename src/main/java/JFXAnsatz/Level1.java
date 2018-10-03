@@ -10,6 +10,7 @@ import Projectiles.EnemyShots;
 import Projectiles.Projectile;
 import SpaceInvaders.CDJ;
 import SpaceInvaders.FastCDJ;
+import SpaceInvaders.SpaceInvader;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

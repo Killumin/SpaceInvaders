@@ -3,7 +3,6 @@ package SpaceInvaders;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import JFXAnsatz.SpaceInvader;
 import Projectiles.CDJProjectile;
 import javafx.scene.image.Image;
 

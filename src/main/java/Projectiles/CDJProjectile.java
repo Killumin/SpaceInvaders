@@ -12,7 +12,7 @@ public class CDJProjectile extends EnemyShots {
 	private Boolean dead;
 	
 	public CDJProjectile(double x, double y) throws FileNotFoundException {
-	super(new Image(new FileInputStream("./Bullet.png"), 16, 16, true, true));
+	super(new Image(new FileInputStream("./CDJProjectile.png"), 24, 24, true, true));
 	this.type = "cdjprojectile";
 	this.setTranslateX(x);
 	this.setTranslateY(y);

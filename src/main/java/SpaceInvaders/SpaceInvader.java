@@ -1,4 +1,4 @@
-package JFXAnsatz;
+package SpaceInvaders;
 
 import Projectiles.EnemyShots;
 import javafx.scene.image.Image;
