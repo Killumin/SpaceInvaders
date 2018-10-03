@@ -75,7 +75,7 @@ public class Main extends Application {
 	        menuLayout = new StackPane();
 	        menuLayout.setAlignment(Pos.TOP_CENTER);
 	        menuLayout.getChildren().addAll(ueberschrift,optionsButton,startGameGui);
-	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("./HubbleDeepFieldPixel.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+	        BackgroundImage myBI= new BackgroundImage(new Image(new FileInputStream("./SpaceInvadersMenu.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 	        menuLayout.setBackground(new Background(myBI));
 
 	        // Menu Scene 
