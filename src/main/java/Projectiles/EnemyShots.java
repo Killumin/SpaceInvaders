@@ -10,6 +10,12 @@ public abstract class EnemyShots extends ImageView {
 	}
 	
 	public void move() {}
+	
+	public void setDead() {}
+	
+	public boolean isDead() {
+		return false;
+	}
 
 	public String getType() {
 		return null;

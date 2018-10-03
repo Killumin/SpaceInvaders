@@ -29,11 +29,13 @@ public class CDJProjectile extends EnemyShots {
 		return this.type;
 	}
 	
+	@Override
 	public void setDead() {
 		this.dead = true;
 	}
 	
-	public Boolean isDead() {
+	@Override
+	public boolean isDead() {
 		return this.dead;
 	}
 }

@@ -206,6 +206,10 @@ public class Level1  {
 
                 case "cdjprojectile":
                 	e.move();
+                	if(e.getBoundsInParent().intersects(player.getBoundsInParent())) {
+                		e.setDead();
+                		player.setDead();
+                	}
                 	break;
 	        }
 	        });
@@ -227,6 +231,20 @@ public class Level1  {
 	                    break;
 	            }
 	        });
+	        
+	        // Remove Collided EnemyShots
+	        
+	        this.enemyShots.forEach(e -> {
+	        	if (e.isDead()) {
+	        		gameLayout.getChildren().remove(e);
+	        	}
+	        });
+	        
+	        for(int i = 0; i < enemyShots.size(); i++) {
+	        	if (enemyShots.get(i).isDead()) {
+	        		enemyShots.remove(i);
+	        	}
+	        }
 	        
 	        // Remove Collided Projectiles
 
@@ -254,6 +272,12 @@ public class Level1  {
 	        	if (spaceInvaders.get(i).isDead()) {
 	        		spaceInvaders.remove(i);
 	        	}
+	        }
+	        
+	        // Remove Dead Player
+	        
+	        if (player.isDead()) {
+	        	gameLayout.getChildren().remove(player);
 	        }
 
 	        if (s > 0.1) {
