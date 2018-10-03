@@ -21,6 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 public class Level1  {
 	
@@ -96,16 +97,17 @@ public class Level1  {
 	        	   player.setVelY(5);
 	        	   vertS = true;
 	           	  break;
-	           case :
-	         	  shoot = true;
+//	           case Space:
+//	         	  shoot = true;
 					}
 			   });
 				
-			   gameScene.setOnMousePressed(m -> {
-				   switch(m) {
-				   case
-				   }
-			   });
+				gameScene.setOnMouseClicked(m -> {
+					if (m.getButton().equals("PRIMARY"))
+						System.out.println("Test");
+						shoot = true;		
+				});
+	
 				
 				gameScene.setOnKeyReleased(e -> {
 					switch(e.getCode()) {
