@@ -13,6 +13,8 @@ public abstract class EnemyShots extends ImageView {
 	
 	public void setDead() {}
 	
+	public void doSound() {}
+	
 	public boolean isDead() {
 		return false;
 	}
