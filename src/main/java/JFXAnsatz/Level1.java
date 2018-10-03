@@ -200,7 +200,7 @@ public class Level1  {
 				}
 	        }
 	       
-	      // Die Gegnerischen Schüsse bewegen sich
+	      // Die Gegnerischen Schüsse bewegen sich und schaden evtl. dem Player
 	        this.enemyShots.forEach(e -> {
 	        	switch (e.getType()) {
 
@@ -208,7 +208,7 @@ public class Level1  {
                 	e.move();
                 	if(e.getBoundsInParent().intersects(player.getBoundsInParent())) {
                 		e.setDead();
-                		player.setDead();
+                		player.hit();
                 	}
                 	break;
 	        }
