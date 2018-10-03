@@ -37,6 +37,8 @@ public class Main extends Application {
 		window = stage;
 		window.setScene(menuScene());
         window.setTitle("SpaceInvader");
+        window.setFullScreenExitHint("");
+        window.setFullScreen(true);
         window.show();
 
 	
