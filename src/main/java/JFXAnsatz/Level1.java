@@ -2,8 +2,8 @@ package JFXAnsatz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
@@ -18,9 +18,11 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-public class Level1 implements KeyListener,ActionListener {
+public class Level1 implements ActionListener {
 	
 	private Stage window;
     private Scene myScene;
@@ -46,10 +48,10 @@ public class Level1 implements KeyListener,ActionListener {
 	 			
 		 		Scene gameScene;
 			 	// Music
-			 	//Media musicFile = new Media(new FileInputStream("./Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3"));
-//			 	Media musicFile = new Media(this.getClass().getResource("Dimitri%20Vegas%20&%20Like%20Mike%20vs.%20W&W%20-%20Arcade%20(Extended%20Mix).mp3").toExternalForm());
-			 	//MediaPlayer meds = new MediaPlayer(musicFile);
-			 	//meds.setAutoPlay(true);
+			 	File File = new File("./Radioactive.mp3");
+			 	Media musicFile = new Media(File.toURI().toString());
+			 	MediaPlayer meds = new MediaPlayer(musicFile);
+			 	meds.setAutoPlay(true);
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
 			 	spaceInvaders.add(new SpaceInvader(0,-200));
@@ -73,35 +75,44 @@ public class Level1 implements KeyListener,ActionListener {
 		        // Game Scene 
 		        gameScene = new Scene(gameLayout);
 		        //
-		        
-		        moveLeft = false;
-		        moveRight = false;
-		        moveUp  = false;
-		        moveDown = false;
-		        shoot = false;
 
 		        
-//				gameScene.setOnKeyPressed(e -> {
-//					switch (e.getCode()) {
-//	           case A:
-//	         	  moveLeft = true;
-//	               //player.moveLeft();
-//	               break;
-//	           case D:
-//	         	  moveRight = true;
-//	               //player.moveRight();
-//	               break;
-//	           case W:
-//	         	  moveUp = true;
-//	           	  //player.moveUp();
-//	           	  break;
-//	           case S:
-//	         	  moveDown = true;
-//	          	  //player.moveDown();
-//	           	  break;
-//	           case SPACE:
-//	         	  shoot = true;
-//					}});
+				gameScene.setOnKeyPressed(e -> {
+					switch(e.getCode()) {
+	           case A:
+	        	   player.setVelX(-5);
+	               break;
+	           case D:
+	        	   player.setVelX(5);
+	               break;
+	           case W:
+	        	   player.setVelY(-5);
+	           	  break;
+	           case S:
+	        	   player.setVelY(5);
+	           	  break;
+	           case SPACE:
+	         	  shoot = true;
+					}
+			   });
+				
+				gameScene.setOnKeyReleased(e -> {
+					switch(e.getCode()) {
+				case A:
+			        player.setVelX(0);
+			        break;
+			    case D:
+			        player.setVelX(0);
+			        break;
+			    case W:
+			        player.setVelY(0);
+			        break;
+			    case S:
+			        player.setVelY(0);
+			        break;
+					}
+				});
+				
 		        window.setScene(gameScene);
 		        window.setFullScreenExitHint("");
 		        window.setFullScreen(true);
@@ -112,25 +123,8 @@ public class Level1 implements KeyListener,ActionListener {
 	 private void update() {
 	        t += 0.016;
 	        
-	        if(moveLeft) {
-	        	player.moveLeft();
-	        	moveLeft = false;
-	        }
-	        
-	        if(moveRight) {
-	        	player.moveRight();
-	        	moveRight = false;
-	        }
-	        
-	        if(moveUp) {
-	        	player.moveUp();
-	        	moveUp = false;
-	        }
-	        
-	        if(moveDown) {
-	        	player.moveDown();
-	        	moveDown = false;
-	        }
+	       player.move();
+	       
 	        if (shoot) {
 	        	try {
 					Projectile shot = player.shoot();
@@ -156,18 +150,22 @@ public class Level1 implements KeyListener,ActionListener {
 	                    break;
 	            }
 	        });
+	        
+	        // Remove Collided Projectiles
 
 	        this.projectiles.forEach(p -> {
 	        	if (p.isDead()) {
 	        		gameLayout.getChildren().remove(p);
 	        	}
-  		});
+	        });
 	        
 	        for(int i = 0; i < projectiles.size(); i++) {
 	        	if (projectiles.get(i).isDead()) {
 	        		projectiles.remove(i);
 	        	}
 	        }
+	        
+	        // Remove Dead Enemys
 	        
 	        this.spaceInvaders.forEach(s -> {
 	        	if (s.isDead()) {
@@ -185,45 +183,6 @@ public class Level1 implements KeyListener,ActionListener {
 	            t = 0;
 	        }
 	    }
-	 
-	 // TESTABSCHNITT DO NOT ENETER WITHOUT PERMISSION 
-	 
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-
-				switch (e.getKeyCode()) {
-           case KeyEvent.VK_A:
-         	  moveLeft = true;
-               //player.moveLeft();
-               break;
-           case KeyEvent.VK_D:
-         	  moveRight = true;
-               //player.moveRight();
-               break;
-           case KeyEvent.VK_W:
-         	  moveUp = true;
-           	  //player.moveUp();
-           	  break;
-           case KeyEvent.VK_S:
-         	  moveDown = true;
-          	  //player.moveDown();
-           	  break;
-           case KeyEvent.VK_SPACE:
-         	  shoot = true;
-				};	
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-		}
-	 //ABSCHNITTCLOSED
 	    
 	    public void setScene(Scene scene) {
 	    	window.setScene(scene);

@@ -9,6 +9,9 @@ import javafx.scene.image.ImageView;
 
 public class Starship extends ImageView {
 	
+	private double velX = 0;
+	private double velY = 0;
+	
 	private Boolean dead;
 
 	public Starship(InputStream arg0, double arg1, double arg2, boolean arg3, boolean arg4) throws FileNotFoundException {
@@ -25,20 +28,9 @@ public class Starship extends ImageView {
 //        setTranslateY(y);
 //    }
     
-    void moveLeft() {
-        this.setTranslateX(this.getTranslateX() - 15);
-    }
-
-    void moveRight() {
-    	this.setTranslateX(this.getTranslateX() + 15);
-    }
-
-    void moveUp() {
-    	this.setTranslateY(this.getTranslateY() - 15);
-    }
-
-    void moveDown() {
-    	this.setTranslateY(this.getTranslateY() + 15);
+    void move() {
+    	this.setTranslateX(this.getTranslateX() + velX);
+    	this.setTranslateY(this.getTranslateY() + velY);
     }
 	
     Projectile shoot() throws FileNotFoundException {
@@ -51,5 +43,13 @@ public class Starship extends ImageView {
 	
 	Boolean isDead() {
 		return this.dead;
+	}
+	
+	void setVelX(double d) {
+		this.velX = d;
+	}
+	
+	void setVelY(double d) {
+		this.velY = d;
 	}
 }
