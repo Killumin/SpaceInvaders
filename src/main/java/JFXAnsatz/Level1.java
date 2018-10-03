@@ -32,10 +32,10 @@ public class Level1 implements ActionListener {
     private Starship player;
     private ArrayList<SpaceInvader> spaceInvaders = new ArrayList<SpaceInvader>();
     
-    private boolean moveLeft;
-    private boolean moveRight;
-    private boolean moveUp;
-    private boolean moveDown;
+    private boolean horiA;
+    private boolean horiD;
+    private boolean vertW;
+    private boolean vertS;
     private boolean shoot;
 
 	 		public Level1(Stage window) throws FileNotFoundException, URISyntaxException{
@@ -48,10 +48,11 @@ public class Level1 implements ActionListener {
 	 			
 		 		Scene gameScene;
 			 	// Music
-			 	File File = new File("./Radioactive.mp3");
-			 	Media musicFile = new Media(File.toURI().toString());
-			 	MediaPlayer meds = new MediaPlayer(musicFile);
-			 	meds.setAutoPlay(true);
+//			 	File File = new File("./Radioactive.mp3");
+//			 	Media musicFile = new Media(File.toURI().toString());
+//			 	MediaPlayer meds = new MediaPlayer(musicFile);
+//			 	meds.play();
+//			 	meds.setVolume(1);
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
 			 	spaceInvaders.add(new SpaceInvader(0,-200));
@@ -81,15 +82,19 @@ public class Level1 implements ActionListener {
 					switch(e.getCode()) {
 	           case A:
 	        	   player.setVelX(-5);
+	        	   horiA = true;
 	               break;
 	           case D:
 	        	   player.setVelX(5);
+	        	   horiD = true;
 	               break;
 	           case W:
 	        	   player.setVelY(-5);
+	        	   vertW = true;
 	           	  break;
 	           case S:
 	        	   player.setVelY(5);
+	        	   vertS = true;
 	           	  break;
 	           case SPACE:
 	         	  shoot = true;
@@ -99,16 +104,28 @@ public class Level1 implements ActionListener {
 				gameScene.setOnKeyReleased(e -> {
 					switch(e.getCode()) {
 				case A:
+					if(!horiD) {
 			        player.setVelX(0);
+					}
+					horiA = false;
 			        break;
 			    case D:
+			    	if(!horiA) {
 			        player.setVelX(0);
+			    	}
+			    	horiD = false;
 			        break;
 			    case W:
+			    	if(!vertS) {
 			        player.setVelY(0);
+			    	}
+			    	vertW = false;
 			        break;
 			    case S:
+			    	if(!vertW) {
 			        player.setVelY(0);
+			    	}
+			    	vertS = false;
 			        break;
 					}
 				});
