@@ -48,11 +48,11 @@ public class Level1 implements ActionListener {
 	 			
 		 		Scene gameScene;
 			 	// Music
-//			 	File File = new File("./Radioactive.mp3");
-//			 	Media musicFile = new Media(File.toURI().toString());
-//			 	MediaPlayer meds = new MediaPlayer(musicFile);
-//			 	meds.play();
-//			 	meds.setVolume(1);
+			 	File File = new File("./Radioactive.mp3");
+			 	Media musicFile = new Media(File.toURI().toString());
+			 	MediaPlayer meds = new MediaPlayer(musicFile);
+			 	meds.play();
+			 	meds.setVolume(0.1);
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
 			 	spaceInvaders.add(new SpaceInvader(0,-200));
