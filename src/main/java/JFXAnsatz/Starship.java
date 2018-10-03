@@ -30,6 +30,10 @@ public class Starship extends ImageView {
 			setDead();
 		}
 	}
+	
+	public int getHealth() {
+		return this.health;
+	}
     
     public void move() {
     	this.setTranslateX(this.getTranslateX() + velX);

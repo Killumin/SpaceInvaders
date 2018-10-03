@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 public class CDJProjectile extends EnemyShots {
 
@@ -29,6 +30,7 @@ public class CDJProjectile extends EnemyShots {
 	
 	public void doSound() {
 		meds.setVolume(0.09);
+		meds.setStopTime(new Duration(2000));
 		meds.play();
 	}
 	
