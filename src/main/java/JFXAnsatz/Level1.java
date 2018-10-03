@@ -181,6 +181,7 @@ public class Level1  {
 	        	if(e != null) {
 	        	gameLayout.getChildren().add(e);
 	        	this.enemyShots.add(e);
+	        	e.doSound();
 	        	}
 	        	s.doMove();
 	        });
