@@ -22,7 +22,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-public class Level1 implements ActionListener {
+public class Level1  {
 	
 	private Stage window;
     private Scene myScene;
@@ -52,7 +52,7 @@ public class Level1 implements ActionListener {
 			 	Media musicFile = new Media(File.toURI().toString());
 			 	MediaPlayer meds = new MediaPlayer(musicFile);
 			 	meds.play();
-			 	meds.setVolume(0.1);
+			 	meds.setVolume(0.09);
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
 			 	spaceInvaders.add(new SpaceInvader(0,-200));
@@ -96,9 +96,15 @@ public class Level1 implements ActionListener {
 	        	   player.setVelY(5);
 	        	   vertS = true;
 	           	  break;
-	           case SPACE:
+	           case :
 	         	  shoot = true;
 					}
+			   });
+				
+			   gameScene.setOnMousePressed(m -> {
+				   switch(m) {
+				   case
+				   }
 			   });
 				
 				gameScene.setOnKeyReleased(e -> {
@@ -139,6 +145,12 @@ public class Level1 implements ActionListener {
 	 
 	 private void update() {
 	        t += 0.016;
+	        
+	        if (t > 2) {
+	        	this.spaceInvaders.forEach(s -> {
+	        		s.doMove();
+	        	});
+	        }
 	        
 	       player.move();
 	       
@@ -204,12 +216,6 @@ public class Level1 implements ActionListener {
 	    public void setScene(Scene scene) {
 	    	window.setScene(scene);
 	    }
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
 		
 		Scene getMyScene() {
 			return myScene;
