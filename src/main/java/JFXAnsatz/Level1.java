@@ -104,8 +104,8 @@ public class Level1  {
 				
 				gameScene.setOnMouseClicked(m -> {
 					if (m.getButton().equals("PRIMARY"))
-						System.out.println("Test");
-						shoot = true;		
+						System.out.println("Test für Chris");
+						shoot = true;
 				});
 	
 				
