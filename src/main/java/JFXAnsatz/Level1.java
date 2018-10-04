@@ -76,10 +76,9 @@ public class Level1  {
 		        gameLayout = new StackPane();
 		        gameLayout.getChildren().add(hud);
 		        gameLayout.getChildren().add(player);
-		        gameLayout.getChildren().add(spaceInvaders.get(0));
-		        gameLayout.getChildren().add(spaceInvaders.get(1));
-		        gameLayout.getChildren().add(spaceInvaders.get(2));
-		        gameLayout.getChildren().add(spaceInvaders.get(3));
+		        for (int i = 0; i < spaceInvaders.size(); i++) {
+		        	gameLayout.getChildren().add(spaceInvaders.get(i));
+		        }
 		        // Background
 		        gameLayout.setBackground(new Background( new BackgroundImage(new Image(new FileInputStream("./Space.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 		        
@@ -169,10 +168,25 @@ public class Level1  {
 	 
 	 private void update() throws FileNotFoundException {
 		 
-		 if(System.currentTimeMillis() - timeStamp > 3000) {
-			 TennisPlayer c = new TennisPlayer(0,-300);
+		 if((System.currentTimeMillis() - timeStamp) > 3000) {
+			 TennisPlayer c = new TennisPlayer(-1000,-300, "links");
+			 TennisPlayer d = new TennisPlayer(-1000,0, "links");
+			 TennisPlayer e = new TennisPlayer(-1000,300, "links");
+			 TennisPlayer f = new TennisPlayer(1000,-300, "rechts");
+			 TennisPlayer g = new TennisPlayer(1000,0, "rechts");
+			 TennisPlayer h = new TennisPlayer(1000,300, "rechts");
 			 gameLayout.getChildren().add(c);
+			 gameLayout.getChildren().add(d);
+			 gameLayout.getChildren().add(e);
+			 gameLayout.getChildren().add(f);
+			 gameLayout.getChildren().add(g);
+			 gameLayout.getChildren().add(h);
 			 spaceInvaders.add(c);
+			 spaceInvaders.add(d);
+			 spaceInvaders.add(e);
+			 spaceInvaders.add(f);
+			 spaceInvaders.add(g);
+			 spaceInvaders.add(h);
 			 this.timeStamp = System.currentTimeMillis();
 		 }
 		 

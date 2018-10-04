@@ -22,7 +22,7 @@ public class TennisBall extends EnemyShots {
 	private double yDistance;
 	
 	public TennisBall(double x, double y, Starship s) throws FileNotFoundException {
-	super(new Image(new FileInputStream("./CDJProjectile.png"), 24, 24, true, true));
+	super(new Image(new FileInputStream("./TennisBall.png"), 24, 24, true, true));
 	this.type = "tennisball";
 	File File = new File("./LaserGun.mp3");
  	musicFile = new Media(File.toURI().toString());
@@ -52,11 +52,11 @@ public class TennisBall extends EnemyShots {
 	public void initMovement() {
 		xDistance = s.getTranslateX() - this.getTranslateX();
 		yDistance = s.getTranslateY() - this.getTranslateY();
-		System.out.println(xDistance);
-		System.out.println(yDistance);
 		double  xTemp = Math.abs(xDistance);
 		double  yTemp = Math.abs(yDistance);
 		int counter = 0;
+		boolean far = false;
+		if(xTemp > 900) { far = true; }
 		if(xTemp > yTemp) {
 			while(xDistance > 10) {
 				xDistance = xDistance/10;
@@ -81,6 +81,16 @@ public class TennisBall extends EnemyShots {
 			for(int i = 0; i < counter; i++) {
 				xDistance = xDistance/10;
 			}
+		}
+		if (far) {
+		if(xDistance < 5 && xDistance > 0) {
+			xDistance*= 10;
+			yDistance*= 10;
+		}
+		if (xDistance < 0 && xDistance > -5) {
+			xDistance*= 10;
+			yDistance*= 10;
+		}
 		}
 		System.out.println(xDistance);
 		System.out.println(yDistance);

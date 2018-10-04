@@ -18,7 +18,7 @@ public class Starship extends ImageView {
 
 	public Starship(InputStream arg0, double arg1, double arg2, boolean arg3, boolean arg4) throws FileNotFoundException {
 		super(new Image(new FileInputStream("./StarshipTimon.png"), arg1, arg2, arg3, arg4));
-		health = 100;
+		health = 100000;
 		this.setTranslateX(0);
         this.setTranslateY(0);
         dead = false;

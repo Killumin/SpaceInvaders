@@ -11,13 +11,15 @@ import javafx.scene.image.Image;
 public class TennisPlayer extends SpaceInvader {
 
 	private String type;
+	private String side;
 	private Boolean dead;
 	private int stamp;
 	private TennisBall projectile;
 		
-		public TennisPlayer(double x, double y) throws FileNotFoundException {
+		public TennisPlayer(double x, double y, String side) throws FileNotFoundException {
 		super(new Image(new FileInputStream("./Pioneer.png"), 96, 96, true, true));
 		this.type = "SpaceInvader";
+		this.side = side;
 		this.setTranslateX(x);
 		this.setTranslateY(y);
 		stamp = 0;
@@ -26,12 +28,19 @@ public class TennisPlayer extends SpaceInvader {
 		
 		@Override
 		public void doMove() {
-			
+		if(side == "rechts") {
 			if (stamp < 40) { 
 				this.setTranslateX(this.getTranslateX() - 3);
 				stamp++;
 				return;
 			}
+		} else {
+			if (stamp < 40) { 
+				this.setTranslateX(this.getTranslateX() + 3);
+				stamp++;
+				return;
+			}
+		}
 		}
 		
 		@Override
