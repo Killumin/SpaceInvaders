@@ -11,7 +11,6 @@ import javafx.util.Duration;
 
 public class CDJProjectile extends EnemyShots {
 
-	
 	private String type;
 	private Boolean dead;
 	private Media musicFile;

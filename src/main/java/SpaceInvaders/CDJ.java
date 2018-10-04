@@ -54,8 +54,8 @@ private CDJProjectile projectile;
 		}
 		return projectile;
 	}
-	
-	String getType() {
+	@Override
+	public String getType() {
 		return this.type;
 	}
 	

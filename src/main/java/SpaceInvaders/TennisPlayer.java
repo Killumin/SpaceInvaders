@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import JFXAnsatz.Starship;
-import Projectiles.CDJProjectile;
 import Projectiles.TennisBall;
 import javafx.scene.image.Image;
 
@@ -57,7 +56,8 @@ public class TennisPlayer extends SpaceInvader {
 			return projectile;
 		}
 		
-		String getType() {
+		@Override
+		public String getType() {
 			return this.type;
 		}
 		

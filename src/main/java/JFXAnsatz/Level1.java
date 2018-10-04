@@ -8,10 +8,8 @@ import java.util.ArrayList;
 
 import Projectiles.EnemyShots;
 import Projectiles.Projectile;
-import SpaceInvaders.CDJ;
-import SpaceInvaders.FastCDJ;
 import SpaceInvaders.SpaceInvader;
-import SpaceInvaders.TennisPlayer;
+import SpaceInvaders.TeleWelle;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -66,10 +64,11 @@ public class Level1  {
 			 	meds.setVolume(0.09);
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
-			 	spaceInvaders.add(new CDJ(0,-600));
-			 	spaceInvaders.add(new FastCDJ(200,-600));
-			 	spaceInvaders.add(new CDJ(-200,-600));
-			 	spaceInvaders.add(new FastCDJ(-400,-600));
+			 	spaceInvaders.add(new TeleWelle(0, -400));
+//			 	spaceInvaders.add(new CDJ(0,-600));
+//			 	spaceInvaders.add(new FastCDJ(200,-600));
+//			 	spaceInvaders.add(new CDJ(-200,-600));
+//			 	spaceInvaders.add(new FastCDJ(-400,-600));
 			 	// HUD
 		        hud = new Text("" +player.getHealth());
 		        hud.setFont(new Font(45));
@@ -172,27 +171,27 @@ public class Level1  {
 	 
 	 private void update() throws FileNotFoundException {
 		 
-		 if((System.currentTimeMillis() - timeStamp) > 3000) {
-			 TennisPlayer c = new TennisPlayer(-1000,-300, "links");
-			 TennisPlayer d = new TennisPlayer(-1000,0, "links");
-			 TennisPlayer e = new TennisPlayer(-1000,300, "links");
-			 TennisPlayer f = new TennisPlayer(1000,-300, "rechts");
-			 TennisPlayer g = new TennisPlayer(1000,0, "rechts");
-			 TennisPlayer h = new TennisPlayer(1000,300, "rechts");
-			 gameLayout.getChildren().add(c);
-			 gameLayout.getChildren().add(d);
-			 gameLayout.getChildren().add(e);
-			 gameLayout.getChildren().add(f);
-			 gameLayout.getChildren().add(g);
-			 gameLayout.getChildren().add(h);
-			 spaceInvaders.add(c);
-			 spaceInvaders.add(d);
-			 spaceInvaders.add(e);
-			 spaceInvaders.add(f);
-			 spaceInvaders.add(g);
-			 spaceInvaders.add(h);
-			 this.timeStamp = System.currentTimeMillis();
-		 }
+//		 if((System.currentTimeMillis() - timeStamp) > 3000) {
+//			 TennisPlayer c = new TennisPlayer(-1000,-300, "links");
+//			 TennisPlayer d = new TennisPlayer(-1000,0, "links");
+//			 TennisPlayer e = new TennisPlayer(-1000,300, "links");
+//			 TennisPlayer f = new TennisPlayer(1000,-300, "rechts");
+//			 TennisPlayer g = new TennisPlayer(1000,0, "rechts");
+//			 TennisPlayer h = new TennisPlayer(1000,300, "rechts");
+//			 gameLayout.getChildren().add(c);
+//			 gameLayout.getChildren().add(d);
+//			 gameLayout.getChildren().add(e);
+//			 gameLayout.getChildren().add(f);
+//			 gameLayout.getChildren().add(g);
+//			 gameLayout.getChildren().add(h);
+//			 spaceInvaders.add(c);
+//			 spaceInvaders.add(d);
+//			 spaceInvaders.add(e);
+//			 spaceInvaders.add(f);
+//			 spaceInvaders.add(g);
+//			 spaceInvaders.add(h);
+//			 this.timeStamp = System.currentTimeMillis();
+//		 }
 		 
 		 // HUD updaten
 		 
@@ -209,6 +208,9 @@ public class Level1  {
 	        	gameLayout.getChildren().add(e);
 	        	this.enemyShots.add(e);
 	        	e.doSound();
+	        	}
+	        	if (s.getType() == "telewelle") {
+	        		s.doMove(player);
 	        	}
 	        	s.doMove();
 	        });

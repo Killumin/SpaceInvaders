@@ -13,7 +13,13 @@ public abstract class SpaceInvader extends ImageView {
 	
 	public void doMove() {}
 	
+	public void doMove(Starship s) {}
+	
 	public EnemyShots shoot(Starship s) {
+		return null;
+	}
+	
+	public String getType() {
 		return null;
 	}
 	
