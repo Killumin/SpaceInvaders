@@ -92,8 +92,6 @@ public class TennisBall extends EnemyShots {
 			yDistance*= 10;
 		}
 		}
-		System.out.println(xDistance);
-		System.out.println(yDistance);
 		moving = true;
 	}
 	

@@ -14,7 +14,6 @@ import SpaceInvaders.SpaceInvader;
 import SpaceInvaders.TennisPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -24,11 +23,15 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Level1  {
 	
 	private Stage window;
+	private Text hud;
     private Scene myScene;
     private StackPane gameLayout;
     private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
@@ -68,10 +71,11 @@ public class Level1  {
 			 	spaceInvaders.add(new CDJ(-200,-600));
 			 	spaceInvaders.add(new FastCDJ(-400,-600));
 			 	// HUD
-		        Label hud = new Label();
-		        hud.setText("" + player.getHealth());
-		        hud.setTranslateX(-400);
-		        hud.setTranslateY(+400);
+		        hud = new Text("" +player.getHealth());
+		        hud.setFont(new Font(45));
+		        hud.setFill(Color.RED);
+		        hud.setTranslateX(800);
+		        hud.setTranslateY(-500);
 		        // Game Layout
 		        gameLayout = new StackPane();
 		        gameLayout.getChildren().add(hud);
@@ -189,6 +193,10 @@ public class Level1  {
 			 spaceInvaders.add(h);
 			 this.timeStamp = System.currentTimeMillis();
 		 }
+		 
+		 // HUD updaten
+		 
+		 hud.setText(""+ player.getHealth());
 		 
 		 // Zeitparameter
 	        t += 0.016;
