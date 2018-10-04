@@ -11,8 +11,10 @@ import Projectiles.Projectile;
 import SpaceInvaders.CDJ;
 import SpaceInvaders.FastCDJ;
 import SpaceInvaders.SpaceInvader;
+import SpaceInvaders.TennisPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -65,18 +67,21 @@ public class Level1  {
 			 	spaceInvaders.add(new FastCDJ(200,-600));
 			 	spaceInvaders.add(new CDJ(-200,-600));
 			 	spaceInvaders.add(new FastCDJ(-400,-600));
+			 	// HUD
+		        Label hud = new Label();
+		        hud.setText("" + player.getHealth());
+		        hud.setTranslateX(-400);
+		        hud.setTranslateY(+400);
 		        // Game Layout
 		        gameLayout = new StackPane();
+		        gameLayout.getChildren().add(hud);
 		        gameLayout.getChildren().add(player);
 		        gameLayout.getChildren().add(spaceInvaders.get(0));
 		        gameLayout.getChildren().add(spaceInvaders.get(1));
 		        gameLayout.getChildren().add(spaceInvaders.get(2));
 		        gameLayout.getChildren().add(spaceInvaders.get(3));
 		        // Background
-
-		        //gameLayout.setBackground(new Background(new BackgroundFill(Color.BLACK,CornerRadii.EMPTY,Insets.EMPTY)));
 		        gameLayout.setBackground(new Background( new BackgroundImage(new Image(new FileInputStream("./Space.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-		  
 		        
 		        AnimationTimer timer = new AnimationTimer() {
 		            @Override
@@ -164,8 +169,8 @@ public class Level1  {
 	 
 	 private void update() throws FileNotFoundException {
 		 
-		 if(System.currentTimeMillis() - timeStamp > 10000) {
-			 CDJ c = new CDJ(0,-600);
+		 if(System.currentTimeMillis() - timeStamp > 3000) {
+			 TennisPlayer c = new TennisPlayer(0,-300);
 			 gameLayout.getChildren().add(c);
 			 spaceInvaders.add(c);
 			 this.timeStamp = System.currentTimeMillis();
@@ -177,7 +182,7 @@ public class Level1  {
 	        
 	     // SpaceInvader bewegen sich und geben evtl. Schüsse ab
 	        this.spaceInvaders.forEach(s -> {
-	        	EnemyShots e = s.shoot();
+	        	EnemyShots e = s.shoot(player);
 	        	if(e != null) {
 	        	gameLayout.getChildren().add(e);
 	        	this.enemyShots.add(e);
@@ -206,6 +211,13 @@ public class Level1  {
 	        	switch (e.getType()) {
 
                 case "cdjprojectile":
+                	e.move();
+                	if(e.getBoundsInParent().intersects(player.getBoundsInParent())) {
+                		e.setDead();
+                		player.hit();
+                	}
+                	break;
+                case "tennisball":
                 	e.move();
                 	if(e.getBoundsInParent().intersects(player.getBoundsInParent())) {
                 		e.setDead();

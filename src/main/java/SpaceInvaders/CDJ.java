@@ -3,6 +3,7 @@ package SpaceInvaders;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import JFXAnsatz.Starship;
 import Projectiles.CDJProjectile;
 import javafx.scene.image.Image;
 
@@ -42,7 +43,7 @@ private CDJProjectile projectile;
 	}
 	
 	@Override
-	public CDJProjectile shoot() {
+	public CDJProjectile shoot(Starship s) {
 		projectile = null;
 		if (stamp == 40) {
 			try {

@@ -1,5 +1,6 @@
 package SpaceInvaders;
 
+import JFXAnsatz.Starship;
 import Projectiles.EnemyShots;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,7 +13,7 @@ public abstract class SpaceInvader extends ImageView {
 	
 	public void doMove() {}
 	
-	public EnemyShots shoot() {
+	public EnemyShots shoot(Starship s) {
 		return null;
 	}
 	
