@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 
 public class TennisPlayer extends SpaceInvader {
 
+	private int health;
 	private String type;
 	private String side;
 	private Boolean dead;
@@ -21,6 +22,7 @@ public class TennisPlayer extends SpaceInvader {
 		this.side = side;
 		this.setTranslateX(x);
 		this.setTranslateY(y);
+		health = 100;
 		stamp = 0;
 		dead = false;
 		}
@@ -71,4 +73,11 @@ public class TennisPlayer extends SpaceInvader {
 			return this.dead;
 		}
 
+		@Override
+		public void hit() {
+			health -= 25;
+			if (health <= 0) {
+				this.setToDead();
+			}
+		}
 }

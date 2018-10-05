@@ -13,6 +13,7 @@ private String type;
 private Boolean dead;
 private int stamp;
 private CDJProjectile projectile;
+private int health;
 	
 	public CDJ(double x, double y) throws FileNotFoundException {
 	super(new Image(new FileInputStream("./Pioneer.png"), 96, 96, true, true));
@@ -20,6 +21,7 @@ private CDJProjectile projectile;
 	this.setTranslateX(x);
 	this.setTranslateY(y);
 	stamp = 0;
+	health = 100;
 	dead = false;
 	}
 	
@@ -67,6 +69,14 @@ private CDJProjectile projectile;
 	@Override
 	public boolean isDead() {
 		return this.dead;
+	}
+	
+	@Override
+	public void hit() {
+		health -= 25;
+		if (health <= 0) {
+			this.setToDead();
+		}
 	}
 	
 }

@@ -8,8 +8,12 @@ import java.util.ArrayList;
 
 import Projectiles.EnemyShots;
 import Projectiles.Projectile;
+import SpaceInvaders.CDJ;
+import SpaceInvaders.EvaKopf;
+import SpaceInvaders.FastCDJ;
 import SpaceInvaders.SpaceInvader;
 import SpaceInvaders.TeleWelle;
+import SpaceInvaders.TennisPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -57,18 +61,21 @@ public class Level1  {
 	 			
 		 		Scene gameScene;
 			 	// Music
-			 	File File = new File("./Radioactive.mp3");
+			 	File File = new File("./TrainerRedTheme.mp3");
 			 	Media musicFile = new Media(File.toURI().toString());
 			 	MediaPlayer meds = new MediaPlayer(musicFile);
 			 	meds.play();
-			 	meds.setVolume(0.09);
+			 	meds.setVolume(0.2);
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
-			 	spaceInvaders.add(new TeleWelle(0, -400));
-//			 	spaceInvaders.add(new CDJ(0,-600));
-//			 	spaceInvaders.add(new FastCDJ(200,-600));
-//			 	spaceInvaders.add(new CDJ(-200,-600));
-//			 	spaceInvaders.add(new FastCDJ(-400,-600));
+			 	spaceInvaders.add(new TennisPlayer(-1000,-300, "links"));
+			 	spaceInvaders.add(new TennisPlayer(1000,-300, "rechts"));
+			 	spaceInvaders.add(new TeleWelle (400,-300));
+			 	spaceInvaders.add(new EvaKopf(400, -400));
+			 	spaceInvaders.add(new CDJ(0,-600));
+			 	spaceInvaders.add(new FastCDJ(200,-600));
+			 	spaceInvaders.add(new CDJ(-200,-600));
+			 	spaceInvaders.add(new FastCDJ(-400,-600));
 			 	// HUD
 		        hud = new Text("" +player.getHealth());
 		        hud.setFont(new Font(45));
@@ -209,7 +216,7 @@ public class Level1  {
 	        	this.enemyShots.add(e);
 	        	e.doSound();
 	        	}
-	        	if (s.getType() == "telewelle") {
+	        	if (s.getType() == "telewelle" || s.getType() == "evakopf") {
 	        		s.doMove(player);
 	        	}
 	        	s.doMove();
@@ -248,6 +255,13 @@ public class Level1  {
                 		player.hit();
                 	}
                 	break;
+                case "wellenstrahlen":
+                	e.move();
+                	if(e.getBoundsInParent().intersects(player.getBoundsInParent())) {
+                		e.setDead();
+                		player.hit();
+                	}
+                	break;
 	        }
 	        });
 	        
@@ -261,7 +275,7 @@ public class Level1  {
 	                    	for(int i = 0; i < spaceInvaders.size(); i++) {
 	                    if (p.getBoundsInParent().intersects(spaceInvaders.get(i).getBoundsInParent())) {
 	                        p.setDead();
-	                        spaceInvaders.get(i).setToDead();
+	                        spaceInvaders.get(i).hit();
 	                    }
 	                    	}
 	                    }

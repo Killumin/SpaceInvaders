@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 
 public class FastCDJ extends SpaceInvader {
 
+private int health;
 private String type;
 private Boolean dead;
 private int stamp;
@@ -19,6 +20,7 @@ private CDJProjectile projectile;
 	this.type = "SpaceInvader";
 	this.setTranslateX(x);
 	this.setTranslateY(y);
+	health = 100;
 	stamp = 0;
 	dead = false;
 	}
@@ -68,6 +70,14 @@ private CDJProjectile projectile;
 	@Override
 	public boolean isDead() {
 		return this.dead;
+	}
+	
+	@Override
+	public void hit() {
+		health -= 25;
+		if (health <= 0) {
+			this.setToDead();
+		}
 	}
 	
 }

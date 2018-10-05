@@ -23,6 +23,8 @@ public abstract class SpaceInvader extends ImageView {
 		return null;
 	}
 	
+	public void hit() {}
+	
 	public void setToDead() {}
 	
 	public boolean isDead() {
