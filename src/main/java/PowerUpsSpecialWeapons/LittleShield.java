@@ -11,7 +11,7 @@ public class LittleShield extends Item {
 	private Boolean dead;
 	
 	public LittleShield(double x, double y) throws FileNotFoundException {
-	super(new Image(new FileInputStream("./LittleShield.png"), 24, 24, true, true));
+	super(new Image(new FileInputStream("./LittleShield.png"), 45, 45, true, true));
 	this.type = "littleshield";
 	this.setTranslateX(x);
 	this.setTranslateY(y);
