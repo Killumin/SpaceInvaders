@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import PowerUpsSpecialWeapons.Item;
+import PowerUpsSpecialWeapons.LittleShield;
 import Projectiles.EnemyShots;
 import Projectiles.Projectile;
 import SpaceInvaders.CDJ;
@@ -34,7 +36,8 @@ import javafx.stage.Stage;
 public class Level1  {
 	
 	private Stage window;
-	private Text hud;
+	private Text hudHealth;
+	private Text hudShield;
     private Scene myScene;
     private StackPane gameLayout;
     private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
@@ -44,6 +47,8 @@ public class Level1  {
     private Starship player;
     private ArrayList<SpaceInvader> spaceInvaders = new ArrayList<SpaceInvader>();
     private long timeStamp;
+    private ImageView hudDialogBox;
+    private ArrayList<Item> items = new ArrayList<Item>();
     
     private boolean horiA;
     private boolean horiD;
@@ -79,15 +84,26 @@ public class Level1  {
 			 	spaceInvaders.add(new CDJ(-200,-600));
 			 	spaceInvaders.add(new FastCDJ(-400,-600));
 			 	// HUD
-		        hud = new Text("" +player.getHealth());
-		        hud.setFont(new Font(45));
-		        hud.setFill(Color.RED);
-		        hud.setTranslateX(800);
-		        hud.setTranslateY(-500);
+		        hudHealth = new Text("" +player.getHealth());
+		        hudHealth.setFont(new Font(45));
+		        hudHealth.setFill(Color.RED);
+		        hudHealth.setTranslateX(800);
+		        hudHealth.setTranslateY(-500);
+		        hudShield = new Text("" +player.getShield());
+		        hudShield.setFont(new Font(45));
+		        hudShield.setFill(Color.YELLOW);
+		        hudShield.setTranslateX(800);
+		        hudShield.setTranslateY(-450);
+		        hudDialogBox = new ImageView(new Image(new FileInputStream("./dialogbox.png"), 700, 300, true, true));
+		        hudDialogBox.setTranslateX(-620);
+		        hudDialogBox.setTranslateY(430);
 		        // Game Layout
+		        items.add(new LittleShield(0, -300));
 		        gameLayout = new StackPane();
-		        gameLayout.getChildren().add(new ImageView(new Image(new FileInputStream("./dialogbox"), 200, 600, true, true)));
-		        gameLayout.getChildren().add(hud);
+		        gameLayout.getChildren().add(items.get(0));
+		        gameLayout.getChildren().add(hudDialogBox);
+		        gameLayout.getChildren().add(hudHealth);
+		        gameLayout.getChildren().add(hudShield);
 		        gameLayout.getChildren().add(player);
 		        for (int i = 0; i < spaceInvaders.size(); i++) {
 		        	gameLayout.getChildren().add(spaceInvaders.get(i));
@@ -204,8 +220,8 @@ public class Level1  {
 		 }
 		 
 		 // HUD updaten
-		 
-		 hud.setText(""+ player.getHealth());
+		 hudShield.setText(""+ player.getShield());
+		 hudHealth.setText(""+ player.getHealth());
 		 
 		 // Zeitparameter
 	        t += 0.016;
@@ -225,8 +241,14 @@ public class Level1  {
 	        	s.doMove();
 	        });
 	        
-	     // Das Player-Movement wird verarbeitet
+	     // Das Player-Movement wird verarbeitet und Items evtl. eingesammelt
 	       player.move();
+	       for(int i = 0; i < items.size(); i++) {
+	    	   if(player.getBoundsInParent().intersects(items.get(i).getBoundsInParent())) {
+	    		   player.gotItem(items.get(i).getType());
+	    		   items.get(i).setDead();
+	    	   }
+	       }
 	       
 	     // Die Player-Schüsse werden verarbeitet
 	       if(s > 0.1)
@@ -286,6 +308,20 @@ public class Level1  {
 	                    break;
 	            }
 	        });
+	        
+	        // Remove Taken Items
+	        
+	        this.items.forEach(i -> {
+	        	if (i.isDead()) {
+	        		gameLayout.getChildren().remove(i);
+	        	}
+	        });
+	        
+	        for(int i = 0; i < items.size(); i++) {
+	        	if (items.get(i).isDead()) {
+	        		items.remove(i);
+	        	}
+	        }
 	        
 	        // Remove Collided EnemyShots
 	        
