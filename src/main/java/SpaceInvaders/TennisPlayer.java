@@ -75,6 +75,7 @@ public class TennisPlayer extends SpaceInvader {
 
 		@Override
 		public void hit() {
+			System.out.println("DamageTaken");
 			health -= 25;
 			if (health <= 0) {
 				this.setToDead();

@@ -17,6 +17,7 @@ import SpaceInvaders.TennisPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -68,6 +69,7 @@ public class Level1  {
 			 	meds.setVolume(0.2);
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
+			 	// Gegner
 			 	spaceInvaders.add(new TennisPlayer(-1000,-300, "links"));
 			 	spaceInvaders.add(new TennisPlayer(1000,-300, "rechts"));
 			 	spaceInvaders.add(new TeleWelle (400,-300));
@@ -84,6 +86,7 @@ public class Level1  {
 		        hud.setTranslateY(-500);
 		        // Game Layout
 		        gameLayout = new StackPane();
+		        gameLayout.getChildren().add(new ImageView(new Image(new FileInputStream("./dialogbox"), 200, 600, true, true)));
 		        gameLayout.getChildren().add(hud);
 		        gameLayout.getChildren().add(player);
 		        for (int i = 0; i < spaceInvaders.size(); i++) {
@@ -178,27 +181,27 @@ public class Level1  {
 	 
 	 private void update() throws FileNotFoundException {
 		 
-//		 if((System.currentTimeMillis() - timeStamp) > 3000) {
-//			 TennisPlayer c = new TennisPlayer(-1000,-300, "links");
+		 if((System.currentTimeMillis() - timeStamp) > 3000) {
+			 TennisPlayer c = new TennisPlayer(-1000,-300, "links");
 //			 TennisPlayer d = new TennisPlayer(-1000,0, "links");
 //			 TennisPlayer e = new TennisPlayer(-1000,300, "links");
-//			 TennisPlayer f = new TennisPlayer(1000,-300, "rechts");
+			 TennisPlayer f = new TennisPlayer(1000,-300, "rechts");
 //			 TennisPlayer g = new TennisPlayer(1000,0, "rechts");
 //			 TennisPlayer h = new TennisPlayer(1000,300, "rechts");
-//			 gameLayout.getChildren().add(c);
+			 gameLayout.getChildren().add(c);
 //			 gameLayout.getChildren().add(d);
 //			 gameLayout.getChildren().add(e);
-//			 gameLayout.getChildren().add(f);
+			 gameLayout.getChildren().add(f);
 //			 gameLayout.getChildren().add(g);
 //			 gameLayout.getChildren().add(h);
-//			 spaceInvaders.add(c);
+			 spaceInvaders.add(c);
 //			 spaceInvaders.add(d);
 //			 spaceInvaders.add(e);
-//			 spaceInvaders.add(f);
+			 spaceInvaders.add(f);
 //			 spaceInvaders.add(g);
 //			 spaceInvaders.add(h);
-//			 this.timeStamp = System.currentTimeMillis();
-//		 }
+			 this.timeStamp = System.currentTimeMillis();
+		 }
 		 
 		 // HUD updaten
 		 
@@ -272,12 +275,13 @@ public class Level1  {
 	                case "projectile":
 	                    p.move();
 	                    if (!spaceInvaders.isEmpty()) {
-	                    	for(int i = 0; i < spaceInvaders.size(); i++) {
-	                    if (p.getBoundsInParent().intersects(spaceInvaders.get(i).getBoundsInParent())) {
-	                        p.setDead();
-	                        spaceInvaders.get(i).hit();
-	                    }
+	                    for(int i = 0; i < spaceInvaders.size(); i++) {
+	                    	SpaceInvader space = spaceInvaders.get(i);
+	                    	if (p.getBoundsInParent().intersects(space.getBoundsInParent())) {
+	                    		p.setDead();
+	                    		space.hit();
 	                    	}
+	                    }
 	                    }
 	                    break;
 	            }
