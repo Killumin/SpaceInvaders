@@ -43,6 +43,7 @@ public class TennisBall extends EnemyShots {
 	
 	@Override
 	public void move() {
+		this.setRotate(this.getRotate() + 2); 
 		if (moving) {
 			this.setTranslateX(this.getTranslateX() + xDistance);
 			this.setTranslateY(this.getTranslateY() + yDistance);

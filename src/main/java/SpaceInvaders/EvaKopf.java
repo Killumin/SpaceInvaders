@@ -16,7 +16,7 @@ public class EvaKopf extends SpaceInvader {
 	private CDJProjectile projectile;
 
 	public EvaKopf(double x, double y) throws FileNotFoundException {
-		super(new Image(new FileInputStream("./TennisBall.png"), 32, 32, true, true));
+		super(new Image(new FileInputStream("./EvaKopf.png"), 48, 48, true, true));
 		this.type = "evakopf";
 		health = 100;
 		this.setTranslateX(x);
@@ -31,13 +31,20 @@ public class EvaKopf extends SpaceInvader {
 				this.setTranslateX(this.getTranslateX() + 2);
 			}
 			if(s.getTranslateX() < this.getTranslateX()) {
-				this.setTranslateX(this.getTranslateX() - 2);
+				this.setTranslateX(this.getTranslateX() - 2); 
 			}
 			if(s.getTranslateY() > this.getTranslateY()) {
 				this.setTranslateY(this.getTranslateY() + 2);
+				System.out.println(this.getRotate());
+				if (this.getRotate() == 90) {
+				this.setRotate(0);
+				} else {
+					this.setRotate(this.getRotate() + 2);
+				}
 			}
 			if(s.getTranslateY() < this.getTranslateY()) {
 				this.setTranslateY(this.getTranslateY() - 2);
+				this.setRotate(this.getRotate() - 2);
 			}
 		}
 		
