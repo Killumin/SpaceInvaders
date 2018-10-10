@@ -14,6 +14,11 @@ public class EvaKopf extends SpaceInvader {
 	private Boolean dead;
 	private int stamp;
 	private CDJProjectile projectile;
+	
+	private boolean up;
+	private boolean down;
+	private boolean left;
+	private boolean right;
 
 	public EvaKopf(double x, double y) throws FileNotFoundException {
 		super(new Image(new FileInputStream("./EvaKopf.png"), 48, 48, true, true));
@@ -27,24 +32,37 @@ public class EvaKopf extends SpaceInvader {
 		
 		@Override
 		public void doMove(Starship s) {
+			up = false;
+			down = false;
+			left = false;
+			right = false;
 			if(s.getTranslateX() > this.getTranslateX()) {
+				right = true;
 				this.setTranslateX(this.getTranslateX() + 2);
 			}
 			if(s.getTranslateX() < this.getTranslateX()) {
-				this.setTranslateX(this.getTranslateX() - 2); 
+				left = true;
+				this.setTranslateX(this.getTranslateX() - 2);
 			}
 			if(s.getTranslateY() > this.getTranslateY()) {
+				down = true;
 				this.setTranslateY(this.getTranslateY() + 2);
-				System.out.println(this.getRotate());
-				if (this.getRotate() == 90) {
-				this.setRotate(0);
-				} else {
-					this.setRotate(this.getRotate() + 2);
-				}
 			}
 			if(s.getTranslateY() < this.getTranslateY()) {
+				up = true;
 				this.setTranslateY(this.getTranslateY() - 2);
-				this.setRotate(this.getRotate() - 2);
+			}
+			if (right && up) {
+				this.setRotate(315);
+			}
+			if (right && down) {
+				this.setRotate(405);
+			}
+			if (left && up) {
+				this.setRotate(545);
+			}
+			if (left && down) {
+				this.setRotate(445);
 			}
 		}
 		
