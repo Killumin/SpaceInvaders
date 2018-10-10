@@ -49,6 +49,7 @@ public class Level1  {
     private long timeStamp;
     private ImageView hudDialogBox;
     private ArrayList<Item> items = new ArrayList<Item>();
+    private ArrayList<Explosion> explosions = new ArrayList<Explosion>();
     
     private boolean horiA;
     private boolean horiD;
@@ -352,10 +353,15 @@ public class Level1  {
 	        }
 	        
 	        // Remove Dead Enemys
-	        
 	        this.spaceInvaders.forEach(s -> {
 	        	if (s.isDead()) {
+	        		Explosion explos = null;
+	        		try {
+						explos = new Explosion(s.getTranslateX(), s.getTranslateY());
+					} catch (FileNotFoundException e1) {}
 	        		gameLayout.getChildren().remove(s);
+	        		gameLayout.getChildren().add(explos);
+	        		this.explosions.add(explos);
 	        	}
 	        });
 	        
@@ -369,6 +375,26 @@ public class Level1  {
 	        
 	        if (player.isDead()) {
 	        	gameLayout.getChildren().remove(player);
+	        	Explosion explos = null;
+        		try {
+					explos = new Explosion(player.getTranslateX(), player.getTranslateY());
+				} catch (FileNotFoundException e1) {}
+        		gameLayout.getChildren().add(explos);
+        		this.explosions.add(explos);
+	        }
+	        
+	        // Remove exploded Explosions
+	        
+	        this.explosions.forEach(e -> {
+	        	if (e.check()) {
+	        		gameLayout.getChildren().remove(e);
+	        	}
+	        });
+	        
+	        for(int i = 0; i < explosions.size(); i++) {
+	        	if(explosions.get(i).check()) {
+	        		explosions.remove(i);
+	        	}
 	        }
 
 	        if (s > 0.1) {
