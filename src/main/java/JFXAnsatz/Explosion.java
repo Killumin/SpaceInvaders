@@ -18,7 +18,7 @@ public class Explosion extends ImageView {
 	}
 	
 	public boolean check() {
-		if(System.currentTimeMillis() - timeStamp > 2000) {
+		if(System.currentTimeMillis() - timeStamp > 1000) {
 			return true;
 		} else {
 			return false;

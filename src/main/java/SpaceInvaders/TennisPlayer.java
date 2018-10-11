@@ -18,7 +18,7 @@ public class TennisPlayer extends SpaceInvader {
 		
 		public TennisPlayer(double x, double y, String side) throws FileNotFoundException {
 		super(new Image(new FileInputStream("./Pioneer.png"), 96, 96, true, true));
-		this.type = "SpaceInvader";
+		this.type = "tennisplayer";
 		this.side = side;
 		this.setTranslateX(x);
 		this.setTranslateY(y);

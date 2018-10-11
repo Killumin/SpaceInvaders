@@ -198,27 +198,27 @@ public class Level1  {
 	 
 	 private void update() throws FileNotFoundException {
 		 
-		 if((System.currentTimeMillis() - timeStamp) > 3000) {
-			 TennisPlayer c = new TennisPlayer(-1000,-300, "links");
-//			 TennisPlayer d = new TennisPlayer(-1000,0, "links");
-//			 TennisPlayer e = new TennisPlayer(-1000,300, "links");
-			 TennisPlayer f = new TennisPlayer(1000,-300, "rechts");
-//			 TennisPlayer g = new TennisPlayer(1000,0, "rechts");
-//			 TennisPlayer h = new TennisPlayer(1000,300, "rechts");
-			 gameLayout.getChildren().add(c);
-//			 gameLayout.getChildren().add(d);
-//			 gameLayout.getChildren().add(e);
-			 gameLayout.getChildren().add(f);
-//			 gameLayout.getChildren().add(g);
-//			 gameLayout.getChildren().add(h);
-			 spaceInvaders.add(c);
-//			 spaceInvaders.add(d);
-//			 spaceInvaders.add(e);
-			 spaceInvaders.add(f);
-//			 spaceInvaders.add(g);
-//			 spaceInvaders.add(h);
-			 this.timeStamp = System.currentTimeMillis();
-		 }
+//		 if((System.currentTimeMillis() - timeStamp) > 3000) {
+//			 TennisPlayer c = new TennisPlayer(-1000,-300, "links");
+////			 TennisPlayer d = new TennisPlayer(-1000,0, "links");
+////			 TennisPlayer e = new TennisPlayer(-1000,300, "links");
+//			 TennisPlayer f = new TennisPlayer(1000,-300, "rechts");
+////			 TennisPlayer g = new TennisPlayer(1000,0, "rechts");
+////			 TennisPlayer h = new TennisPlayer(1000,300, "rechts");
+//			 gameLayout.getChildren().add(c);
+////			 gameLayout.getChildren().add(d);
+////			 gameLayout.getChildren().add(e);
+//			 gameLayout.getChildren().add(f);
+////			 gameLayout.getChildren().add(g);
+////			 gameLayout.getChildren().add(h);
+//			 spaceInvaders.add(c);
+////			 spaceInvaders.add(d);
+////			 spaceInvaders.add(e);
+//			 spaceInvaders.add(f);
+////			 spaceInvaders.add(g);
+////			 spaceInvaders.add(h);
+//			 this.timeStamp = System.currentTimeMillis();
+//		 }
 		 
 		 // HUD updaten
 		 hudShield.setText(""+ player.getShield());
@@ -301,6 +301,7 @@ public class Level1  {
 	                    for(int i = 0; i < spaceInvaders.size(); i++) {
 	                    	SpaceInvader space = spaceInvaders.get(i);
 	                    	if (p.getBoundsInParent().intersects(space.getBoundsInParent())) {
+	                    		System.out.println(space.getType());
 	                    		p.setDead();
 	                    		space.hit();
 	                    	}
@@ -321,6 +322,7 @@ public class Level1  {
 	        for(int i = 0; i < items.size(); i++) {
 	        	if (items.get(i).isDead()) {
 	        		items.remove(i);
+	        		i--;
 	        	}
 	        }
 	        
@@ -335,6 +337,7 @@ public class Level1  {
 	        for(int i = 0; i < enemyShots.size(); i++) {
 	        	if (enemyShots.get(i).isDead()) {
 	        		enemyShots.remove(i);
+	        		i--;
 	        	}
 	        }
 	        
@@ -349,6 +352,7 @@ public class Level1  {
 	        for(int i = 0; i < projectiles.size(); i++) {
 	        	if (projectiles.get(i).isDead()) {
 	        		projectiles.remove(i);
+	        		i--;
 	        	}
 	        }
 	        
@@ -368,6 +372,7 @@ public class Level1  {
 	        for(int i = 0; i < spaceInvaders.size(); i++) {
 	        	if (spaceInvaders.get(i).isDead()) {
 	        		spaceInvaders.remove(i);
+	        		i--;
 	        	}
 	        }
 	        
@@ -394,6 +399,7 @@ public class Level1  {
 	        for(int i = 0; i < explosions.size(); i++) {
 	        	if(explosions.get(i).check()) {
 	        		explosions.remove(i);
+	        		i--;
 	        	}
 	        }
 
