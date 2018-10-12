@@ -1,6 +1,6 @@
 package JFXAnsatz;
 
-import java.awt.TextField;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -20,8 +20,9 @@ import SpaceInvaders.TeleWelle;
 import SpaceInvaders.TennisPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -50,7 +51,7 @@ public class Level1  {
     private Starship player;
     private ArrayList<SpaceInvader> spaceInvaders = new ArrayList<SpaceInvader>();
     private long timeStamp;
-    private TextField hudDialogBox;
+    private Label hudDialogLabel;
     private ArrayList<Item> items = new ArrayList<Item>();
     private ArrayList<Explosion> explosions = new ArrayList<Explosion>();
     
@@ -104,9 +105,14 @@ public class Level1  {
 		        hudCoins.setTranslateX(800);
 		        hudCoins.setTranslateY(-400);
 		         
-		        // hudDialogBox = 
-		        // hudDialogBox.setTranslateX(-620);
-		        // hudDialogBox.setTranslateY(430);
+		        // hudDialogBox.set
+		        hudDialogLabel = new Label();
+		        hudDialogLabel.setText("THIS IS A TEST ");
+		        //hudDialogLabel.setBackground(new Background( new BackgroundImage(new Image(new FileInputStream("./dialogbox.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+
+		        System.out.println(hudDialogLabel.getLayoutBounds());
+		        hudDialogLabel.relocate(-100,-300);
+		        System.out.println(hudDialogLabel.getLayoutBounds());
 		        // Game Layout
 		        items.add(new LittleShield(0, -300));
 		        items.add(new Coin(-200, -300));
@@ -115,7 +121,7 @@ public class Level1  {
 		        gameLayout.getChildren().add(items.get(0));
 		        gameLayout.getChildren().add(items.get(1));
 		        gameLayout.getChildren().add(items.get(2));
-		        // gameLayout.getChildren().add(hudDialogBox);
+		        gameLayout.getChildren().add(hudDialogLabel);
 		        gameLayout.getChildren().add(hudHealth);
 		        gameLayout.getChildren().add(hudShield);
 		        gameLayout.getChildren().add(hudCoins);
