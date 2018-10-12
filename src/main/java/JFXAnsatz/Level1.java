@@ -34,6 +34,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Level1  {
@@ -107,7 +108,8 @@ public class Level1  {
 		         
 		        // hudDialogBox.set
 		        hudDialogLabel = new Label();
-		        hudDialogLabel.setText("THIS IS A TEST ");
+		        hudDialogLabel.setText("THIS IS A TEST  too see where the label is on the Screen");
+		        hudDialogLabel.setTextAlignment(TextAlignment.RIGHT);
 		        //hudDialogLabel.setBackground(new Background( new BackgroundImage(new Image(new FileInputStream("./dialogbox.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
 		        System.out.println(hudDialogLabel.getLayoutBounds());
