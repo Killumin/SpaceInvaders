@@ -21,7 +21,7 @@ public class EvaKopf extends SpaceInvader {
 	private boolean right;
 
 	public EvaKopf(double x, double y) throws FileNotFoundException {
-		super(new Image(new FileInputStream("./EvaKopf.png"), 48, 48, true, true));
+		super(new Image(new FileInputStream("./EvaKopf.png"), 60, 60, true, true));
 		this.type = "evakopf";
 		health = 100;
 		this.setTranslateX(x);

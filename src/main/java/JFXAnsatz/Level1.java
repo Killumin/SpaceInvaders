@@ -74,7 +74,7 @@ public class Level1  {
 			 	Media musicFile = new Media(File.toURI().toString());
 			 	MediaPlayer meds = new MediaPlayer(musicFile);
 			 	meds.play();
-			 	meds.setVolume(0.2);
+			 	meds.setVolume(0.1);
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
 			 	// Gegner
@@ -102,9 +102,9 @@ public class Level1  {
 		        hudCoins.setFill(Color.GREEN);
 		        hudCoins.setTranslateX(800);
 		        hudCoins.setTranslateY(-400);
-//		        hudDialogBox = new ImageView(new Image(new FileInputStream("./dialogbox.png"), 700, 300, true, true));
-//		        hudDialogBox.setTranslateX(-620);
-//		        hudDialogBox.setTranslateY(430);
+		        hudDialogBox = new ImageView(new Image(new FileInputStream("./dialogbox.png"), 700, 300, true, true));
+		        hudDialogBox.setTranslateX(-620);
+		        hudDialogBox.setTranslateY(430);
 		        // Game Layout
 		        items.add(new LittleShield(0, -300));
 		        items.add(new Coin(-200, -300));
@@ -113,7 +113,7 @@ public class Level1  {
 		        gameLayout.getChildren().add(items.get(0));
 		        gameLayout.getChildren().add(items.get(1));
 		        gameLayout.getChildren().add(items.get(2));
-//		        gameLayout.getChildren().add(hudDialogBox);
+		        gameLayout.getChildren().add(hudDialogBox);
 		        gameLayout.getChildren().add(hudHealth);
 		        gameLayout.getChildren().add(hudShield);
 		        gameLayout.getChildren().add(hudCoins);
