@@ -1,5 +1,6 @@
 package JFXAnsatz;
 
+import java.awt.TextField;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -49,7 +50,7 @@ public class Level1  {
     private Starship player;
     private ArrayList<SpaceInvader> spaceInvaders = new ArrayList<SpaceInvader>();
     private long timeStamp;
-    private ImageView hudDialogBox;
+    private TextField hudDialogBox;
     private ArrayList<Item> items = new ArrayList<Item>();
     private ArrayList<Explosion> explosions = new ArrayList<Explosion>();
     
@@ -102,9 +103,10 @@ public class Level1  {
 		        hudCoins.setFill(Color.GREEN);
 		        hudCoins.setTranslateX(800);
 		        hudCoins.setTranslateY(-400);
-		        hudDialogBox = new ImageView(new Image(new FileInputStream("./dialogbox.png"), 700, 300, true, true));
-		        hudDialogBox.setTranslateX(-620);
-		        hudDialogBox.setTranslateY(430);
+		         
+		        // hudDialogBox = 
+		        // hudDialogBox.setTranslateX(-620);
+		        // hudDialogBox.setTranslateY(430);
 		        // Game Layout
 		        items.add(new LittleShield(0, -300));
 		        items.add(new Coin(-200, -300));
@@ -113,7 +115,7 @@ public class Level1  {
 		        gameLayout.getChildren().add(items.get(0));
 		        gameLayout.getChildren().add(items.get(1));
 		        gameLayout.getChildren().add(items.get(2));
-		        gameLayout.getChildren().add(hudDialogBox);
+		        // gameLayout.getChildren().add(hudDialogBox);
 		        gameLayout.getChildren().add(hudHealth);
 		        gameLayout.getChildren().add(hudShield);
 		        gameLayout.getChildren().add(hudCoins);
