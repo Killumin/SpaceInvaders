@@ -19,6 +19,7 @@ import SpaceInvaders.SpaceInvader;
 import SpaceInvaders.TeleWelle;
 import SpaceInvaders.TennisPlayer;
 import javafx.animation.AnimationTimer;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -115,14 +116,10 @@ public class Level1  {
 		        // hudDialogBox.set
 		        hudDialogLabel = new Label();
 		        hudDialogLabel.setText("THIS IS A TEST  too see where the label is on the Screen");
+		        hudDialogLabel.setPrefSize(700,250);
 		        hudDialogLabel.setTextAlignment(TextAlignment.RIGHT);
-		        //hudDialogLabel.setBackground(new Background( new BackgroundImage(new Image(new FileInputStream("./dialogbox.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-
-		        System.out.println(hudDialogLabel.getLayoutBounds());
-		        hudDialogLabel.setTranslateX(-960);
-		        hudDialogLabel.setTranslateY(216);
-		        hudDialogLabel.setBorder(new Border(new BorderStroke(Color.BLUE,new BorderStrokeStyle(null, null, null, s, s, null),new CornerRadii(10.0),new BorderWidths(10.00))));
-		        System.out.println(hudDialogLabel.getLayoutBounds());
+		        hudDialogLabel.setBackground(new Background( new BackgroundImage(new Image(new FileInputStream("./dialogbox.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+		        
 		        // Game Layout
 		        items.add(new LittleShield(0, -300));
 		        items.add(new Coin(-200, -300));
@@ -134,6 +131,7 @@ public class Level1  {
 		        gameLayout.getChildren().add(hudDialogLabel);
 		        gameLayout.getChildren().add(hudHealth);
 		        gameLayout.getChildren().add(hudShield);
+		        gameLayout.setAlignment(hudDialogLabel,Pos.BOTTOM_LEFT);
 		        gameLayout.getChildren().add(hudCoins);
 		        gameLayout.getChildren().add(player);
 		        for (int i = 0; i < spaceInvaders.size(); i++) {
