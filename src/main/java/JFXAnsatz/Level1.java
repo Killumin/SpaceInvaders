@@ -113,7 +113,7 @@ public class Level1  {
 		        hudCoins.setTranslateX(800);
 		        hudCoins.setTranslateY(-400);
 		         
-		        // hudDialogBox.set
+		        // hudDialoglabel 
 		        hudDialogLabel = new Label();
 		        hudDialogLabel.setText("THIS IS A TEST  too see where the label is on the Screen");
 		        hudDialogLabel.setPrefSize(700,250);
