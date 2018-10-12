@@ -35,9 +35,19 @@ public class TennisPlayer extends SpaceInvader {
 				stamp++;
 				return;
 			}
+			if (stamp > 40) {
+				this.setTranslateX(this.getTranslateX() + 3);
+				stamp++;
+				return;
+			}
 		} else {
 			if (stamp < 40) { 
 				this.setTranslateX(this.getTranslateX() + 3);
+				stamp++;
+				return;
+			}
+			if (stamp > 40) {
+				this.setTranslateX(this.getTranslateX() - 3);
 				stamp++;
 				return;
 			}

@@ -6,16 +6,15 @@ import java.io.FileNotFoundException;
 
 import JFXAnsatz.Starship;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 public class TennisBall extends EnemyShots {
 
 	private String type;
 	private Boolean dead;
 	private Media musicFile;
-	private MediaPlayer meds;
+	private AudioClip sound;
 	private Starship s;
 	private boolean moving;
 	private double xDistance;
@@ -25,8 +24,7 @@ public class TennisBall extends EnemyShots {
 	super(new Image(new FileInputStream("./TennisBall.png"), 24, 24, true, true));
 	this.type = "tennisball";
 	File File = new File("./LaserGun.mp3");
- 	musicFile = new Media(File.toURI().toString());
- 	meds = new MediaPlayer(musicFile);
+ 	sound = new AudioClip(File.toURI().toString());
 	this.setTranslateX(x);
 	this.setTranslateY(y);
 	this.s = s;
@@ -36,9 +34,9 @@ public class TennisBall extends EnemyShots {
 	}
 	
 	public void doSound() {
-		meds.setVolume(0.09);
-		meds.setStopTime(new Duration(2000));
-		meds.play();
+		sound.setVolume(0.09);
+		sound.setCycleCount(1);
+		sound.play();
 	}
 	
 	@Override
