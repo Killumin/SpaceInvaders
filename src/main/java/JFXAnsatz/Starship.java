@@ -16,6 +16,7 @@ public class Starship extends ImageView {
 	private int health;
 	private int shield;
 	private Boolean dead;
+	private int cointValue = 0;
 
 	public Starship(InputStream arg0, double arg1, double arg2, boolean arg3, boolean arg4) throws FileNotFoundException {
 		super(new Image(new FileInputStream("./StarshipTimon.png"), arg1, arg2, arg3, arg4));
@@ -41,6 +42,10 @@ public class Starship extends ImageView {
 	public void gotItem(String type) {
 		switch(type) {
 		case "littleshield": this.shield += 100;
+		break;
+		
+		case "coin": this.cointValue += 1;
+		break;
 		}
 	}
 	
@@ -75,5 +80,9 @@ public class Starship extends ImageView {
 	
 	public int getShield() {
 		return this.shield;
+	}
+	
+	public int getCoinAmount() {
+		return this.cointValue;
 	}
 }

@@ -39,6 +39,7 @@ public class Level1  {
 	private Stage window;
 	private Text hudHealth;
 	private Text hudShield;
+	private Text hudCoins;
     private Scene myScene;
     private StackPane gameLayout;
     private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
@@ -96,18 +97,26 @@ public class Level1  {
 		        hudShield.setFill(Color.YELLOW);
 		        hudShield.setTranslateX(800);
 		        hudShield.setTranslateY(-450);
-		        hudDialogBox = new ImageView(new Image(new FileInputStream("./dialogbox.png"), 700, 300, true, true));
-		        hudDialogBox.setTranslateX(-620);
-		        hudDialogBox.setTranslateY(430);
+		        hudCoins = new Text("" +player.getCoinAmount());
+		        hudCoins.setFont(new Font(45));
+		        hudCoins.setFill(Color.GREEN);
+		        hudCoins.setTranslateX(800);
+		        hudCoins.setTranslateY(-400);
+//		        hudDialogBox = new ImageView(new Image(new FileInputStream("./dialogbox.png"), 700, 300, true, true));
+//		        hudDialogBox.setTranslateX(-620);
+//		        hudDialogBox.setTranslateY(430);
 		        // Game Layout
 		        items.add(new LittleShield(0, -300));
 		        items.add(new Coin(-200, -300));
 		        items.add(new Coin(200, -300));
 		        gameLayout = new StackPane();
 		        gameLayout.getChildren().add(items.get(0));
-		        gameLayout.getChildren().add(hudDialogBox);
+		        gameLayout.getChildren().add(items.get(1));
+		        gameLayout.getChildren().add(items.get(2));
+//		        gameLayout.getChildren().add(hudDialogBox);
 		        gameLayout.getChildren().add(hudHealth);
 		        gameLayout.getChildren().add(hudShield);
+		        gameLayout.getChildren().add(hudCoins);
 		        gameLayout.getChildren().add(player);
 		        for (int i = 0; i < spaceInvaders.size(); i++) {
 		        	gameLayout.getChildren().add(spaceInvaders.get(i));
@@ -226,6 +235,7 @@ public class Level1  {
 		 // HUD updaten
 		 hudShield.setText(""+ player.getShield());
 		 hudHealth.setText(""+ player.getHealth());
+		 hudCoins.setText("" + player.getCoinAmount());
 		 
 		 // Zeitparameter
 	        t += 0.016;

@@ -11,7 +11,7 @@ public class Coin extends Item {
 	private Boolean dead;
 	
 	public Coin(double x, double y) throws FileNotFoundException {
-	super(new Image(new FileInputStream("./Rupee.jpg"), 28, 28, true, true));
+	super(new Image(new FileInputStream("./Rupee.png"), 28, 28, true, true));
 	this.type = "coin";
 	this.setTranslateX(x);
 	this.setTranslateY(y);
