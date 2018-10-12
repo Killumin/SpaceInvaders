@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import PowerUpsSpecialWeapons.Coin;
 import PowerUpsSpecialWeapons.Item;
 import PowerUpsSpecialWeapons.LittleShield;
 import Projectiles.EnemyShots;
@@ -100,6 +101,8 @@ public class Level1  {
 		        hudDialogBox.setTranslateY(430);
 		        // Game Layout
 		        items.add(new LittleShield(0, -300));
+		        items.add(new Coin(-200, -300));
+		        items.add(new Coin(200, -300));
 		        gameLayout = new StackPane();
 		        gameLayout.getChildren().add(items.get(0));
 		        gameLayout.getChildren().add(hudDialogBox);
