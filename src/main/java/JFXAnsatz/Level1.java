@@ -28,10 +28,16 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -113,7 +119,9 @@ public class Level1  {
 		        //hudDialogLabel.setBackground(new Background( new BackgroundImage(new Image(new FileInputStream("./dialogbox.png")), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
 		        System.out.println(hudDialogLabel.getLayoutBounds());
-		        hudDialogLabel.relocate(-100,-300);
+		        hudDialogLabel.setTranslateX(-960);
+		        hudDialogLabel.setTranslateY(216);
+		        hudDialogLabel.setBorder(new Border(new BorderStroke(Color.BLUE,new BorderStrokeStyle(null, null, null, s, s, null),new CornerRadii(10.0),new BorderWidths(10.00))));
 		        System.out.println(hudDialogLabel.getLayoutBounds());
 		        // Game Layout
 		        items.add(new LittleShield(0, -300));
