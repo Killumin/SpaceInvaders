@@ -22,23 +22,16 @@ import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;  
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -62,6 +55,7 @@ public class Level1  {
     private Label hudDialogLabel;
     private ArrayList<Item> items = new ArrayList<Item>();
     private ArrayList<Explosion> explosions = new ArrayList<Explosion>();
+    private WaveConstructionHelper waveCons = new WaveConstructionHelper();
     
     private boolean horiA;
     private boolean horiD;
@@ -88,14 +82,14 @@ public class Level1  {
 			 	// Starship
 			 	player = new Starship(null,96,96,true,true);
 			 	// Gegner
-			 	spaceInvaders.add(new TennisPlayer(-1000,-300, "links"));
-			 	spaceInvaders.add(new TennisPlayer(1000,-300, "rechts"));
-			 	spaceInvaders.add(new TeleWelle (400,-300));
-			 	spaceInvaders.add(new EvaKopf(400, -400));
-			 	spaceInvaders.add(new CDJ(0,-600));
-			 	spaceInvaders.add(new FastCDJ(200,-600));
-			 	spaceInvaders.add(new CDJ(-200,-600));
-			 	spaceInvaders.add(new FastCDJ(-400,-600));
+//			 	spaceInvaders.add(new TennisPlayer(-1000,-300, "links"));
+//			 	spaceInvaders.add(new TennisPlayer(1000,-300, "rechts"));
+//			 	spaceInvaders.add(new TeleWelle (400,-300));
+//			 	spaceInvaders.add(new EvaKopf(400, -400));
+//			 	spaceInvaders.add(new CDJ(0,-600));
+//			 	spaceInvaders.add(new FastCDJ(200,-600));
+//			 	spaceInvaders.add(new CDJ(-200,-600));
+//			 	spaceInvaders.add(new FastCDJ(-400,-600));
 			 	// HUD
 		        hudHealth = new Text("" +player.getHealth());
 		        hudHealth.setFont(new Font(45));
@@ -226,6 +220,12 @@ public class Level1  {
 		    }
 	 
 	 private void update() throws FileNotFoundException {
+		 
+		 SpaceInvader NextEnemy = waveCons.NapstablookWave();
+		 if (NextEnemy != null) {
+			 this.spaceInvaders.add(NextEnemy); 
+			 gameLayout.getChildren().add(NextEnemy);
+		 }
 		 
 //		 if((System.currentTimeMillis() - timeStamp) > 3000) {
 //			 TennisPlayer c = new TennisPlayer(-1000,-300, "links");
